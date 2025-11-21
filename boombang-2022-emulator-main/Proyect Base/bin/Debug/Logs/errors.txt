@@ -1,0 +1,2 @@
+
+The logs file was created successfully.

@@ -1,0 +1,3 @@
+﻿//HELPER
+ App.Form.WriteLine("OK");
+
