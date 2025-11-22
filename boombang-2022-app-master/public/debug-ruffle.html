@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - Ruffle Flash Emulator</title>
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .status {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin: 10px 5px;
+        }
+        .status.success { background: #10b981; color: white; }
+        .status.error { background: #ef4444; color: white; }
+        .status.warning { background: #f59e0b; color: white; }
+        .status.info { background: #3b82f6; color: white; }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .check-item {
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .check-item.ok { background: #d1fae5; border-left: 4px solid #10b981; }
+        .check-item.fail { background: #fee2e2; border-left: 4px solid #ef4444; }
+        .check-item.warn { background: #fef3c7; border-left: 4px solid #f59e0b; }
+
+        .icon { font-size: 20px; min-width: 25px; }
+        .icon.ok::before { content: '✓'; color: #10b981; }
+        .icon.fail::before { content: '✗'; color: #ef4444; }
+        .icon.warn::before { content: '⚠'; color: #f59e0b; }
+
+        pre {
+            background: #1f2937;
+            color: #10b981;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .flash-container {
+            background: #0099cc;
+            padding: 20px;
+            border-radius: 10px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .log {
+            max-height: 300px;
+            overflow-y: auto;
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+        .log-entry {
+            padding: 5px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+        .log-entry.info { color: #3b82f6; }
+        .log-entry.success { color: #10b981; }
+        .log-entry.error { color: #ef4444; }
+        .log-entry.warn { color: #f59e0b; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎮 Ruffle Flash Emulator - Debug Panel</h1>
+            <p>Panel de diagnóstico para verificar la integración de Ruffle</p>
+            <div id="overall-status"></div>
+        </div>
+
+        <!-- Verificación de Ruffle -->
+        <div class="section">
+            <h2>1. Verificación de Ruffle</h2>
+            <div id="ruffle-checks"></div>
+        </div>
+
+        <!-- Información del Sistema -->
+        <div class="section">
+            <h2>2. Información del Sistema</h2>
+            <div id="system-info"></div>
+        </div>
+
+        <!-- Configuración de Ruffle -->
+        <div class="section">
+            <h2>3. Configuración de Ruffle</h2>
+            <div id="ruffle-config"></div>
+        </div>
+
+        <!-- Test de SWF Simple -->
+        <div class="section">
+            <h2>4. Test de Carga de SWF</h2>
+            <p>Prueba cargar un SWF de test para verificar que Ruffle funciona:</p>
+            <button onclick="loadTestSWF()">🎬 Cargar SWF de Test</button>
+            <div id="swf-container" class="flash-container" style="margin-top: 20px; display: none;">
+                <div id="test-swf"></div>
+            </div>
+            <div id="swf-status" style="margin-top: 15px;"></div>
+        </div>
+
+        <!-- Logs en Tiempo Real -->
+        <div class="section">
+            <h2>5. Logs en Tiempo Real</h2>
+            <div id="console-log" class="log"></div>
+        </div>
+
+        <!-- Instrucciones -->
+        <div class="section">
+            <h2>6. Próximos Pasos</h2>
+            <div id="instructions"></div>
+        </div>
+    </div>
+
+    <script>
+        const logs = [];
+
+        function addLog(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            logs.push({ timestamp, message, type });
+            updateLogDisplay();
+        }
+
+        function updateLogDisplay() {
+            const logContainer = document.getElementById('console-log');
+            logContainer.innerHTML = logs.map(log =>
+                `<div class="log-entry ${log.type}">[${log.timestamp}] ${log.message}</div>`
+            ).join('');
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        // Interceptar console.log
+        const originalLog = console.log;
+        console.log = function(...args) {
+            addLog(args.join(' '), 'info');
+            originalLog.apply(console, args);
+        };
+
+        const originalError = console.error;
+        console.error = function(...args) {
+            addLog(args.join(' '), 'error');
+            originalError.apply(console, args);
+        };
+
+        const originalWarn = console.warn;
+        console.warn = function(...args) {
+            addLog(args.join(' '), 'warn');
+            originalWarn.apply(console, args);
+        };
+
+        // Verificar Ruffle
+        function checkRuffle() {
+            const checks = [];
+            let allPassed = true;
+
+            // Check 1: Ruffle loaded
+            if (typeof window.RufflePlayer !== 'undefined') {
+                checks.push({ ok: true, message: 'Ruffle Player cargado correctamente' });
+                addLog('✓ Ruffle Player detectado', 'success');
+            } else {
+                checks.push({ ok: false, message: 'Ruffle Player NO cargado' });
+                addLog('✗ Ruffle Player NO detectado', 'error');
+                allPassed = false;
+            }
+
+            // Check 2: WebAssembly support
+            if (typeof WebAssembly !== 'undefined') {
+                checks.push({ ok: true, message: 'WebAssembly soportado' });
+                addLog('✓ WebAssembly disponible', 'success');
+            } else {
+                checks.push({ ok: false, message: 'WebAssembly NO soportado' });
+                addLog('✗ WebAssembly NO disponible', 'error');
+                allPassed = false;
+            }
+
+            // Check 3: Ruffle version
+            try {
+                checks.push({ ok: true, message: 'Ruffle cargado desde CDN (unpkg.com)' });
+            } catch (e) {
+                checks.push({ ok: false, message: 'Error al verificar versión de Ruffle' });
+            }
+
+            displayChecks(checks);
+            return allPassed;
+        }
+
+        function displayChecks(checks) {
+            const container = document.getElementById('ruffle-checks');
+            container.innerHTML = checks.map(check => `
+                <div class="check-item ${check.ok ? 'ok' : 'fail'}">
+                    <span class="icon ${check.ok ? 'ok' : 'fail'}"></span>
+                    <span>${check.message}</span>
+                </div>
+            `).join('');
+        }
+
+        // Información del sistema
+        function displaySystemInfo() {
+            const info = {
+                'Navegador': navigator.userAgent,
+                'Plataforma': navigator.platform,
+                'Idioma': navigator.language,
+                'Cookies Habilitadas': navigator.cookieEnabled,
+                'Online': navigator.onLine,
+                'Screen Size': `${screen.width}x${screen.height}`,
+                'Viewport': `${window.innerWidth}x${window.innerHeight}`
+            };
+
+            const container = document.getElementById('system-info');
+            container.innerHTML = Object.entries(info).map(([key, value]) => `
+                <div class="check-item ok">
+                    <strong>${key}:</strong> ${value}
+                </div>
+            `).join('');
+        }
+
+        // Configuración de Ruffle
+        function displayRuffleConfig() {
+            const container = document.getElementById('ruffle-config');
+
+            if (typeof window.RufflePlayer !== 'undefined') {
+                const config = {
+                    autoplay: 'on',
+                    unmuteOverlay: 'hidden',
+                    backgroundColor: '#0099cc',
+                    letterbox: 'off',
+                    warnOnUnsupportedContent: false,
+                    logLevel: 'warn',
+                    allowScriptAccess: true,
+                    menu: false
+                };
+
+                container.innerHTML = '<pre>' + JSON.stringify(config, null, 2) + '</pre>';
+            } else {
+                container.innerHTML = '<p class="check-item fail">Ruffle no está cargado</p>';
+            }
+        }
+
+        // Cargar SWF de test
+        function loadTestSWF() {
+            const container = document.getElementById('swf-container');
+            const status = document.getElementById('swf-status');
+
+            container.style.display = 'block';
+            status.innerHTML = '<p class="check-item warn">Cargando SWF...</p>';
+            addLog('Iniciando carga de SWF de test...', 'info');
+
+            try {
+                // Crear objeto para el SWF
+                const obj = document.createElement('object');
+                obj.type = 'application/x-shockwave-flash';
+                obj.data = 'static/flash_esp/BoomBangLoader.swf';
+                obj.style.width = '800px';
+                obj.style.height = '400px';
+
+                // Parámetros
+                const param1 = document.createElement('param');
+                param1.name = 'quality';
+                param1.value = 'high';
+                obj.appendChild(param1);
+
+                const param2 = document.createElement('param');
+                param2.name = 'bgcolor';
+                param2.value = '#0099cc';
+                obj.appendChild(param2);
+
+                // Insertar en contenedor
+                const testContainer = document.getElementById('test-swf');
+                testContainer.innerHTML = '';
+                testContainer.appendChild(obj);
+
+                addLog('✓ Elemento SWF creado e insertado', 'success');
+                status.innerHTML = '<p class="check-item ok">SWF insertado. Ruffle debería cargarlo automáticamente.</p>';
+
+                // Verificar después de 2 segundos
+                setTimeout(() => {
+                    if (testContainer.querySelector('ruffle-player, ruffle-object, ruffle-embed')) {
+                        status.innerHTML += '<p class="check-item ok">✓ Ruffle Player detectado en el DOM!</p>';
+                        addLog('✓ Ruffle interceptó el objeto SWF correctamente', 'success');
+                    } else {
+                        status.innerHTML += '<p class="check-item warn">⚠ No se detectó Ruffle Player en el DOM</p>';
+                        addLog('⚠ Ruffle no interceptó el objeto. ¿El SWF existe?', 'warn');
+                    }
+                }, 2000);
+
+            } catch (error) {
+                status.innerHTML = `<p class="check-item fail">Error: ${error.message}</p>`;
+                addLog('✗ Error al cargar SWF: ' + error.message, 'error');
+            }
+        }
+
+        // Instrucciones
+        function displayInstructions() {
+            const container = document.getElementById('instructions');
+            const allOk = typeof window.RufflePlayer !== 'undefined' && typeof WebAssembly !== 'undefined';
+
+            if (allOk) {
+                container.innerHTML = `
+                    <div class="check-item ok">
+                        <span class="icon ok"></span>
+                        <div>
+                            <strong>¡Todo listo!</strong><br>
+                            Ruffle está funcionando correctamente. Puedes proceder a:
+                            <ol style="margin-top: 10px; padding-left: 20px;">
+                                <li>Iniciar los 3 servidores (Laravel, C#, Node.js)</li>
+                                <li>Ir a <a href="http://localhost:8000" target="_blank">http://localhost:8000</a></li>
+                                <li>Hacer login y probar el juego</li>
+                                <li>Abrir Developer Tools (F12) para ver logs</li>
+                            </ol>
+                        </div>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div class="check-item fail">
+                        <span class="icon fail"></span>
+                        <div>
+                            <strong>Hay problemas</strong><br>
+                            Revisa los checks arriba y soluciona los problemas antes de continuar.<br>
+                            Consulta <code>TESTING_RUFFLE.md</code> para troubleshooting.
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Estado general
+        function updateOverallStatus() {
+            const container = document.getElementById('overall-status');
+            const allOk = typeof window.RufflePlayer !== 'undefined' && typeof WebAssembly !== 'undefined';
+
+            if (allOk) {
+                container.innerHTML = '<span class="status success">✓ Sistema Listo</span>';
+            } else {
+                container.innerHTML = '<span class="status error">✗ Hay Problemas</span>';
+            }
+        }
+
+        // Inicializar
+        window.addEventListener('load', function() {
+            addLog('=== Iniciando diagnóstico de Ruffle ===', 'info');
+
+            setTimeout(() => {
+                checkRuffle();
+                displaySystemInfo();
+                displayRuffleConfig();
+                displayInstructions();
+                updateOverallStatus();
+
+                addLog('=== Diagnóstico completado ===', 'success');
+            }, 100);
+        });
+    </script>
+</body>
+</html>
