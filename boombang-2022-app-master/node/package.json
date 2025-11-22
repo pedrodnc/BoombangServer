@@ -1,0 +1,18 @@
+{
+  "name": "boombang-socket-server",
+  "version": "1.0.0",
+  "description": "BoomBang Socket.IO Server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "socket.io": "^4.5.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -17,12 +19,25 @@ class LoginController extends Controller
     }
     
     public function login(Request $request){
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'password' => 'required|string|min:4'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid input'
+            ], 400);
+        }
+
         $response = [
             'success' => false
         ];
 
-        $user = $this->getUser($request->name, $request->password);
-        if ($user){
+        $user = User::where('name', $request->name)->first();
+
+        if ($user && Hash::check($request->password, $user->password)){
             $response = [
                 'success' => true
             ];
@@ -30,9 +45,5 @@ class LoginController extends Controller
         }
 
         return response()->json($response);
-    }
-
-    private function getUser($name, $password){
-        return User::where('name', $name)->where('password', $password)->first();
     }
 }

@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::get('/game', [GameController::class, 'index'])->name('game');
-Route::prefix('webapi')->group(function (){
+
+Route::middleware(['web'])->prefix('webapi')->group(function (){
     Route::post('/login', [LoginController::class, 'login'])->name('webapi.login');
 });
