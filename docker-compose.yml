@@ -11,30 +11,57 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: boombang_user
       MYSQL_PASSWORD: boombang_pass
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d:ro
     networks:
       - boombang_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    command: --default-authentication-plugin=mysql_native_password
 
   # Laravel + PHP
   laravel:
-    image: php:8.1-fpm
+    build:
+      context: .
+      dockerfile: Dockerfile.php
+      args:
+        USER_ID: ${USER_ID:-1000}
+        GROUP_ID: ${GROUP_ID:-1000}
     container_name: boombang_laravel
     restart: unless-stopped
     working_dir: /var/www
     volumes:
       - ./boombang-2022-app-master:/var/www
+      - ./docker-entrypoint.sh:/usr/local/bin/docker-entrypoint.sh:ro
+    ports:
+      - "8000:8000"
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     networks:
       - boombang_network
-    command: php artisan serve --host=0.0.0.0 --port=8000
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: boombang
+      DB_USERNAME: boombang_user
+      DB_PASSWORD: boombang_pass
+    healthcheck:
+      test: ["CMD", "php", "artisan", "inspire"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   # Node.js Socket Server
   nodejs:
-    image: node:20
+    image: node:20-alpine
     container_name: boombang_nodejs
     restart: unless-stopped
     working_dir: /app
@@ -43,13 +70,25 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     networks:
       - boombang_network
-    command: npm start
+    environment:
+      PORT: 3000
+      ALLOWED_ORIGINS: http://localhost:8000,http://127.0.0.1:8000
+      CSHARP_HOST: 127.0.0.1
+      CSHARP_PORT: 3300
+    command: sh -c "npm install && npm start"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
 volumes:
   mysql_data:
+    driver: local
 
 networks:
   boombang_network:

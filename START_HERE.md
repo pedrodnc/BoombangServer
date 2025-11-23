@@ -57,19 +57,31 @@ export PATH="/Applications/XAMPP/bin:$PATH"
 ./test-ruffle.sh
 ```
 
-### Camino C: Docker (Más Profesional)
+### Camino C: Docker (Más Profesional) ⭐ RECOMENDADO
 **Tiempo:** ~5 minutos
 **Dificultad:** ⭐⭐
+**Multiplataforma:** ✅ Mac, Windows, Linux
 
 ```bash
 # 1. Instalar Docker Desktop
-open https://www.docker.com/products/docker-desktop
+# Mac/Windows: https://www.docker.com/products/docker-desktop
+# Linux: sudo apt-get install docker.io docker-compose
 
-# 2. Iniciar servicios
-docker-compose up -d
+# 2. Ejecutar script de tu sistema operativo:
+./start-docker-mac.sh          # macOS
+start-docker-windows.bat       # Windows
+./start-docker-linux.sh        # Linux
 
 # 3. ¡Listo! Todo está corriendo en contenedores
+# Abre: http://localhost:8000/debug-ruffle.html
 ```
+
+**Ventajas de Docker:**
+- ✅ Funciona IGUAL en Mac, Windows y Linux
+- ✅ No contamina tu sistema
+- ✅ Setup automático (MySQL, PHP, Node.js)
+- ✅ Fácil de limpiar después
+- ✅ Perfecto para equipos
 
 ---
 
