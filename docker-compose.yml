@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: boombang_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: boombang
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: boombang_user
+      MYSQL_PASSWORD: boombang_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - boombang_network
+
+  # Laravel + PHP
+  laravel:
+    image: php:8.1-fpm
+    container_name: boombang_laravel
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./boombang-2022-app-master:/var/www
+    depends_on:
+      - mysql
+    networks:
+      - boombang_network
+    command: php artisan serve --host=0.0.0.0 --port=8000
+
+  # Node.js Socket Server
+  nodejs:
+    image: node:20
+    container_name: boombang_nodejs
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - ./boombang-2022-app-master/node:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    networks:
+      - boombang_network
+    command: npm start
+
+volumes:
+  mysql_data:
+
+networks:
+  boombang_network:
+    driver: bridge
