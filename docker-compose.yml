@@ -29,7 +29,7 @@ services:
   # Laravel + PHP
   laravel:
     build:
-      context: .
+      context: ./boombang-2022-app-master
       dockerfile: Dockerfile.php
       args:
         USER_ID: ${USER_ID:-1000}
@@ -39,7 +39,7 @@ services:
     working_dir: /var/www
     volumes:
       - ./boombang-2022-app-master:/var/www
-      - ./docker-entrypoint.sh:/usr/local/bin/docker-entrypoint.sh:ro
+      - ./boombang-2022-app-master/docker-entrypoint.sh:/usr/local/bin/docker-entrypoint.sh:ro
     ports:
       - "8000:8000"
     depends_on:
