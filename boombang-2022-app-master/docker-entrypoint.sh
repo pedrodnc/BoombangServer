@@ -21,14 +21,6 @@ else
     echo "✅ Dependencias de Composer ya instaladas"
 fi
 
-# Verificar si node_modules existe
-if [ ! -d "node_modules" ]; then
-    echo "📦 Instalando dependencias de Node.js..."
-    npm install
-else
-    echo "✅ Dependencias de Node.js ya instaladas"
-fi
-
 # Verificar si .env existe
 if [ ! -f ".env" ]; then
     echo "⚙️  Creando archivo .env..."

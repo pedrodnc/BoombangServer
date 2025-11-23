@@ -21,6 +21,12 @@ clientC.on("close", function () {
     console.log("Connection whitch C# close");
 });
 
+clientC.on("error", function (err) {
+    console.log(`⚠️  C# Emulator not available at ${CSHARP_HOST}:${CSHARP_PORT}`);
+    console.log(`   Error: ${err.message}`);
+    console.log(`   Node.js server will continue without C# emulator`);
+});
+
 const PORT = process.env.PORT || 3000;
 const CSHARP_HOST = process.env.CSHARP_HOST || "127.0.0.1";
 const CSHARP_PORT = process.env.CSHARP_PORT || 3300;
@@ -33,5 +39,5 @@ server.listen(PORT, () => {
 });
 
 clientC.connect(CSHARP_PORT, CSHARP_HOST, function () {
-    console.log(`Connected to C# server at ${CSHARP_HOST}:${CSHARP_PORT}`);
+    console.log(`✅ Connected to C# server at ${CSHARP_HOST}:${CSHARP_PORT}`);
 });

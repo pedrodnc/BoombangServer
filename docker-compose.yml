@@ -77,7 +77,7 @@ services:
     environment:
       PORT: 3000
       ALLOWED_ORIGINS: http://localhost:8000,http://127.0.0.1:8000
-      CSHARP_HOST: 127.0.0.1
+      CSHARP_HOST: host.docker.internal
       CSHARP_PORT: 3300
     command: sh -c "npm install && npm start"
     healthcheck:
