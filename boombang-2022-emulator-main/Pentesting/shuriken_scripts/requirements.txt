@@ -1,0 +1,50 @@
+# ============================================================================
+# Dependencias - BoomBang Shuriken Exploit Scripts
+# ============================================================================
+#
+# INSTALACIÓN:
+#   pip install -r requirements.txt
+#
+# VERSIONES:
+#   - Python 3.7+
+#   - Windows 7+ / macOS 10.13+ / Linux (Ubuntu 18.04+)
+#
+# ============================================================================
+
+# Para shuriken_autoclicker.py
+# ============================================================================
+
+# PyAutoGUI - Automatización de mouse y teclado
+pyautogui>=0.9.53
+
+# pynput - Detección de hotkeys (funciona mejor en macOS que keyboard)
+pynput>=1.7.6
+
+# OpenCV - Detección visual de ninjas en pantalla
+opencv-python>=4.5.0
+
+# Pillow - Procesamiento de imágenes (requerido por PyAutoGUI)
+Pillow>=9.0.0
+
+# NumPy - Procesamiento de arrays (requerido por OpenCV)
+numpy>=1.21.0
+
+# ============================================================================
+# NOTAS DE COMPATIBILIDAD
+# ============================================================================
+#
+# WINDOWS:
+#   - Todas las dependencias funcionan sin configuración adicional
+#   - PyAutoGUI requiere permisos de accesibilidad en Windows 10+
+#
+# macOS:
+#   - Requiere permisos de accesibilidad en:
+#     System Preferences > Security & Privacy > Privacy > Accessibility
+#   - Añadir Terminal o Python a la lista de apps permitidas
+#
+# LINUX:
+#   - PyAutoGUI requiere xdotool: sudo apt install python3-xdotool
+#   - Scrot para screenshots: sudo apt install scrot
+#   - Puede requerir sudo para pyautogui en algunos sistemas
+#
+# ============================================================================
