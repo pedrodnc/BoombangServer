@@ -1,0 +1,30 @@
+package src.tv.boombang.application.rankings.events
+{
+   import flash.events.Event;
+   
+   public class _oe14918 extends Event
+   {
+      
+      public static const _rr2751:String = "tabSelected";
+      
+      public static const _ft10913:String = "filterSelected";
+      
+      public static const _gw7109:String = "searchSelected";
+      
+      public static const _ci14784:String = "pageSelected";
+      
+      private var _data:Object;
+      
+      public function _oe14918(param1:String, param2:Object)
+      {
+         super(param1,false,false);
+         this._data = param2;
+      }
+      
+      public function get data() : Object
+      {
+         return this._data;
+      }
+   }
+}
+
