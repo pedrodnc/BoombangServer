@@ -1,0 +1,19 @@
+╔═══════════════════════════════════════════════════════════╗
+║                                                           ║
+║        COLOCA AQUÍ LA IMAGEN: elfather.png                ║
+║                                                           ║
+║  Para que aparezca como fondo en el autoclicker:         ║
+║                                                           ║
+║  1. Coloca el archivo "elfather.png" en esta carpeta     ║
+║  2. O en la carpeta donde esté el .exe compilado         ║
+║                                                           ║
+║  Nota: Si no hay imagen, se usará un fondo degradado    ║
+║        automáticamente (se ve bien igual)                ║
+║                                                           ║
+╚═══════════════════════════════════════════════════════════╝
+
+La imagen se ajustará automáticamente al tamaño de la ventana
+sin perder resolución (ImageLayout.Stretch).
+
+Resolución recomendada: 900x650 pixels (tamaño de la ventana)
+Formatos soportados: PNG (recomendado), JPG, BMP
