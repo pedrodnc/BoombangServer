@@ -63,25 +63,28 @@ namespace AutoElfather
             yPos += 20;
 
             // Sección de configuraciones
-            AddSection(mainPanel, ref yPos, "⚡ CONFIGURACIONES DE POTENCIA", new[]
+            AddSection(mainPanel, ref yPos, "⚡ CONFIGURACIONES DE VELOCIDAD", new[]
             {
-                "El juego Ring funciona con un sistema de carga:",
-                "• Más tiempo presionado = Más potencia = Más distancia",
+                "El autoclicker tiene 3 velocidades de clicks continuos:",
+                "• CPS = Clicks Por Segundo (cuántos clicks hace)",
                 "",
-                "🔵 BAJA POTENCIA (30-40%)",
-                "   • Velocidad: Ultra rápida (80ms delay)",
-                "   • Uso: Anillos cercanos (1-3 posiciones)",
-                "   • Tip: Perfecta para speedruns",
+                "🐢 VELOCIDAD LENTA (5-10 CPS)",
+                "   • CPS: ~10 clicks por segundo",
+                "   • Delay: 100ms entre clicks",
+                "   • Uso: Clicks controlados y precisos",
+                "   • Tip: Perfecta para jugar sin que se note",
                 "",
-                "🟡 MEDIA POTENCIA (50-70%) ⭐ RECOMENDADA",
-                "   • Velocidad: Balanceada (120ms delay)",
-                "   • Uso: Distancias medias (4-6 posiciones)",
+                "⚖️ VELOCIDAD MEDIA (15-20 CPS) ⭐ RECOMENDADA",
+                "   • CPS: ~20 clicks por segundo",
+                "   • Delay: 50ms entre clicks",
+                "   • Uso: Juego normal y competitivo",
                 "   • Tip: Configuración óptima para la mayoría de casos",
                 "",
-                "🔴 ALTA POTENCIA (80-100%)",
-                "   • Velocidad: Controlada (180ms delay)",
-                "   • Uso: Anillos lejanos (7-10 posiciones)",
-                "   • Tip: Máxima potencia para objetivos difíciles"
+                "🚀 VELOCIDAD RÁPIDA (30-50 CPS)",
+                "   • CPS: ~50 clicks por segundo",
+                "   • Delay: 20ms entre clicks",
+                "   • Uso: Máxima velocidad de juego",
+                "   • Tip: Ultra rápido para dominar completamente"
             });
 
             yPos += 20;
@@ -91,8 +94,8 @@ namespace AutoElfather
             {
                 "1️⃣ Abre BoomBang y entra al juego Ring",
                 "",
-                "2️⃣ Selecciona la configuración de potencia deseada",
-                "   (en las pestañas de arriba)",
+                "2️⃣ Selecciona la velocidad de clicks deseada",
+                "   (en las pestañas de arriba: Lenta, Media o Rápida)",
                 "",
                 "3️⃣ Posiciona el cursor sobre el botón de lanzamiento",
                 "   del juego Ring (donde haces click normalmente)",
@@ -140,9 +143,9 @@ namespace AutoElfather
                 "• Ajusta la posición de las coordenadas con precisión",
                 "  Un pixel puede hacer la diferencia",
                 "",
-                "• Usa baja potencia para completar niveles rápidamente",
-                "• Usa alta potencia para alcanzar anillos difíciles",
-                "• Usa media potencia como tu configuración por defecto"
+                "• Usa velocidad lenta (10 CPS) para jugar con control",
+                "• Usa velocidad rápida (50 CPS) para dominar el juego",
+                "• Usa velocidad media (20 CPS) como tu configuración por defecto"
             });
 
             yPos += 30;

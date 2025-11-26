@@ -8,11 +8,11 @@ Creado por **erKabesa aka JkPedro** 🎂
 
 ## ✨ Características
 
-### 🎯 Sistema de Potencia Optimizado
-- **3 configuraciones de potencia** basadas en el análisis del juego Ring
-- **Baja Potencia (30-40%)**: Para anillos cercanos, máxima velocidad
-- **Media Potencia (50-70%)**: Balance perfecto (RECOMENDADA)
-- **Alta Potencia (80-100%)**: Para distancias largas
+### 🎯 Sistema de Velocidades de Click
+- **3 configuraciones de velocidad** con clicks continuos automáticos
+- **Velocidad Lenta (5-10 CPS)**: Clicks controlados, 100ms delay
+- **Velocidad Media (15-20 CPS)**: Balance perfecto (RECOMENDADA)
+- **Velocidad Rápida (30-50 CPS)**: Máxima velocidad, 20ms delay
 
 ### ⌨️ Hotkeys Profesionales
 - **F1**: Activar autoclicker
@@ -104,32 +104,35 @@ El .exe estará en la carpeta `build\`
 
 ## 🎯 Configuraciones Detalladas
 
-### 🔵 Baja Potencia (30-40%)
+### 🐢 Velocidad Lenta (5-10 CPS)
 ```
-Delay entre clicks: 80ms
-Tiempo de hold: 30ms
-Uso ideal: Anillos a 1-3 posiciones
+Delay entre clicks: 100ms
+CPS (Clicks Por Segundo): ~10
+Tipo: Clicks continuos automáticos
 ```
-**Ventajas**: Velocidad máxima, perfecta para speedruns
-**Desventajas**: No alcanza anillos lejanos
+**Ventajas**: Control total, difícil de detectar, precisión máxima
+**Desventajas**: Más lenta que las otras opciones
+**Uso ideal**: Para jugar con control y sin llamar la atención
 
-### 🟡 Media Potencia (50-70%) ⭐
+### ⚖️ Velocidad Media (15-20 CPS) ⭐
 ```
-Delay entre clicks: 120ms
-Tiempo de hold: 60ms
-Uso ideal: Anillos a 4-6 posiciones
+Delay entre clicks: 50ms
+CPS (Clicks Por Segundo): ~20
+Tipo: Clicks continuos automáticos
 ```
-**Ventajas**: Balance perfecto, configuración más versátil
-**Desventajas**: Ninguna, es la recomendada
+**Ventajas**: Balance perfecto entre velocidad y control
+**Desventajas**: Ninguna, es la configuración óptima
+**Uso ideal**: Juego normal, competitivo, uso general
 
-### 🔴 Alta Potencia (80-100%)
+### 🚀 Velocidad Rápida (30-50 CPS)
 ```
-Delay entre clicks: 180ms
-Tiempo de hold: 100ms
-Uso ideal: Anillos a 7-10 posiciones
+Delay entre clicks: 20ms
+CPS (Clicks Por Segundo): ~50
+Tipo: Clicks continuos automáticos
 ```
-**Ventajas**: Alcanza cualquier distancia
-**Desventajas**: Más lenta, puede ser excesiva para anillos cercanos
+**Ventajas**: Velocidad ultra rápida, dominio total del juego
+**Desventajas**: Puede ser muy obvio que estás usando autoclicker
+**Uso ideal**: Cuando quieres dominar completamente y no te importa
 
 ---
 

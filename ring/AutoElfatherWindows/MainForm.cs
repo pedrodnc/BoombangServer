@@ -42,26 +42,26 @@ namespace AutoElfather
         private System.Windows.Forms.Timer pingTimer;
         private Button brrButton, launcherButton, helpButton;
 
-        // Configuraciones de potencia (basadas en el análisis del juego Ring)
-        private PowerConfig lowPower = new PowerConfig {
-            Name = "Baja (30-40%)",
-            ClickDelay = 80,
-            HoldTime = 30,
-            Description = "Rápida y precisa para distancias cortas"
+        // Configuraciones de velocidad (basadas en clicks continuos)
+        private PowerConfig lowSpeed = new PowerConfig {
+            Name = "Lenta (5-10 CPS)",
+            ClickDelay = 100,
+            CPS = 10,
+            Description = "Clicks lentos y controlados"
         };
 
-        private PowerConfig medPower = new PowerConfig {
-            Name = "Media (50-70%)",
-            ClickDelay = 120,
-            HoldTime = 60,
-            Description = "Balance perfecto velocidad/potencia"
+        private PowerConfig medSpeed = new PowerConfig {
+            Name = "Media (15-20 CPS)",
+            ClickDelay = 50,
+            CPS = 20,
+            Description = "Balance perfecto velocidad/precisión"
         };
 
-        private PowerConfig highPower = new PowerConfig {
-            Name = "Alta (80-100%)",
-            ClickDelay = 180,
-            HoldTime = 100,
-            Description = "Máxima potencia para distancias largas"
+        private PowerConfig highSpeed = new PowerConfig {
+            Name = "Rápida (30-50 CPS)",
+            ClickDelay = 20,
+            CPS = 50,
+            Description = "Clicks ultra rápidos"
         };
 
         private PowerConfig currentConfig;
@@ -74,7 +74,7 @@ namespace AutoElfather
             SetupControls();
             SetupTimers();
             SetupHotkeys();
-            currentConfig = medPower; // Default a media potencia
+            currentConfig = medSpeed; // Default a velocidad media
         }
 
         private void SetupForm()
@@ -136,24 +136,24 @@ namespace AutoElfather
                 Font = new Font("Segoe UI", 11, FontStyle.Bold)
             };
 
-            // Tab 1: Baja Potencia
-            var tab1 = CreatePowerTab(lowPower, Color.FromArgb(100, 180, 255));
+            // Tab 1: Velocidad Lenta
+            var tab1 = CreatePowerTab(lowSpeed, Color.FromArgb(100, 180, 255));
             tabControl.TabPages.Add(tab1);
 
-            // Tab 2: Media Potencia
-            var tab2 = CreatePowerTab(medPower, Color.FromArgb(255, 200, 100));
+            // Tab 2: Velocidad Media
+            var tab2 = CreatePowerTab(medSpeed, Color.FromArgb(255, 200, 100));
             tabControl.TabPages.Add(tab2);
 
-            // Tab 3: Alta Potencia
-            var tab3 = CreatePowerTab(highPower, Color.FromArgb(255, 100, 100));
+            // Tab 3: Velocidad Rápida
+            var tab3 = CreatePowerTab(highSpeed, Color.FromArgb(255, 100, 100));
             tabControl.TabPages.Add(tab3);
 
             tabControl.SelectedIndexChanged += (s, e) => {
                 switch (tabControl.SelectedIndex)
                 {
-                    case 0: currentConfig = lowPower; break;
-                    case 1: currentConfig = medPower; break;
-                    case 2: currentConfig = highPower; break;
+                    case 0: currentConfig = lowSpeed; break;
+                    case 1: currentConfig = medSpeed; break;
+                    case 2: currentConfig = highSpeed; break;
                 }
                 UpdateStatus($"Configuración cambiada a: {currentConfig.Name}");
             };
@@ -198,7 +198,7 @@ namespace AutoElfather
 
             var statsLabel = new Label
             {
-                Text = $"⏱ Delay: {config.ClickDelay}ms | ⏳ Hold: {config.HoldTime}ms",
+                Text = $"⏱ Delay: {config.ClickDelay}ms | 🚀 CPS: ~{config.CPS} clicks/seg",
                 Font = new Font("Consolas", 10),
                 ForeColor = Color.LightGreen,
                 AutoSize = true,
@@ -237,24 +237,24 @@ namespace AutoElfather
 
         private string GetInstructionsForPower(PowerConfig config)
         {
-            if (config == lowPower)
-                return "✨ BAJA POTENCIA (30-40%)\n\n" +
-                       "📌 Ideal para: Anillos cercanos (1-3 posiciones)\n" +
-                       "⚡ Velocidad: Ultra rápida\n" +
-                       "🎯 Precisión: Alta\n" +
-                       "💡 Tip: Perfecta para speedruns y máxima velocidad de juego";
-            else if (config == medPower)
-                return "⚖️ MEDIA POTENCIA (50-70%)\n\n" +
-                       "📌 Ideal para: Distancias medias (4-6 posiciones)\n" +
-                       "⚡ Velocidad: Balanceada\n" +
-                       "🎯 Precisión: Óptima\n" +
+            if (config == lowSpeed)
+                return "🐢 VELOCIDAD LENTA (5-10 CPS)\n\n" +
+                       "📌 Ideal para: Clicks controlados y precisos\n" +
+                       "⚡ CPS: ~10 clicks por segundo\n" +
+                       "🎯 Delay: 100ms entre clicks\n" +
+                       "💡 Tip: Perfecta para jugar sin detectar o clicks precisos";
+            else if (config == medSpeed)
+                return "⚖️ VELOCIDAD MEDIA (15-20 CPS) ⭐\n\n" +
+                       "📌 Ideal para: Juego normal y competitivo\n" +
+                       "⚡ CPS: ~20 clicks por segundo\n" +
+                       "🎯 Delay: 50ms entre clicks\n" +
                        "💡 Tip: Configuración recomendada para la mayoría de situaciones";
             else
-                return "💪 ALTA POTENCIA (80-100%)\n\n" +
-                       "📌 Ideal para: Anillos lejanos (7-10 posiciones)\n" +
-                       "⚡ Velocidad: Controlada\n" +
-                       "🎯 Precisión: Máxima potencia\n" +
-                       "💡 Tip: Para alcanzar objetivos difíciles o muy distantes";
+                return "🚀 VELOCIDAD RÁPIDA (30-50 CPS)\n\n" +
+                       "📌 Ideal para: Máxima velocidad de juego\n" +
+                       "⚡ CPS: ~50 clicks por segundo\n" +
+                       "🎯 Delay: 20ms entre clicks\n" +
+                       "💡 Tip: Ultra rápido para dominar completamente el juego";
         }
 
         private void SetupControls()
@@ -458,10 +458,11 @@ namespace AutoElfather
 
             SetCursorPos(fixedCoordinates.X, fixedCoordinates.Y);
 
-            // Simular click con el tiempo de hold configurado
+            // Click inmediato: down y up sin delay
             mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
-            Thread.Sleep(currentConfig.HoldTime);
             mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+
+            // El delay entre clicks lo controla el Timer.Interval
         }
 
         private async void PingTimer_Tick(object sender, EventArgs e)
@@ -511,7 +512,7 @@ namespace AutoElfather
     {
         public string Name { get; set; }
         public int ClickDelay { get; set; }
-        public int HoldTime { get; set; }
+        public int CPS { get; set; }  // Clicks Per Second
         public string Description { get; set; }
     }
 }

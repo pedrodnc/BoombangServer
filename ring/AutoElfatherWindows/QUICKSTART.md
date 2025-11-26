@@ -36,18 +36,19 @@ F6 = FIJAR COORDENADAS 📍
 
 ## ⚡ CONFIGURACIONES
 
-El programa tiene 3 modos en las pestañas de arriba:
+El programa tiene 3 velocidades de clicks en las pestañas de arriba:
 
-### 🔵 BAJA POTENCIA (30-40%)
-Para anillos cercanos - Ultra rápido
+### 🐢 VELOCIDAD LENTA (5-10 CPS)
+~10 clicks por segundo - Controlado y preciso
 
-### 🟡 MEDIA POTENCIA (50-70%) ⭐ RECOMENDADO
-Para distancias medias - Perfecto balance
+### ⚖️ VELOCIDAD MEDIA (15-20 CPS) ⭐ RECOMENDADO
+~20 clicks por segundo - Perfecto balance
 
-### 🔴 ALTA POTENCIA (80-100%)
-Para anillos lejanos - Máxima potencia
+### 🚀 VELOCIDAD RÁPIDA (30-50 CPS)
+~50 clicks por segundo - Ultra rápido
 
 **Prueba las 3 y elige tu favorita!**
+(CPS = Clicks Por Segundo)
 
 ---
 
@@ -85,7 +86,7 @@ Abajo verás tu ping en tiempo real
 → Presiona **F6** de nuevo con el cursor bien posicionado
 
 ### "Va muy rápido/lento"
-→ Cambia de pestaña (Baja/Media/Alta potencia)
+→ Cambia de pestaña (Lenta 10 CPS / Media 20 CPS / Rápida 50 CPS)
 
 ---
 
