@@ -1,0 +1,126 @@
+╔══════════════════════════════════════════════════════════════════════════╗
+║                                                                          ║
+║         AUTO ELFATHER - CURSOR MOVIDO                                   ║
+║         El boss del sexxxx - Creado por erKabesa aka JkPedro            ║
+║                                                                          ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════════════════
+  🎯 CARACTERÍSTICAS DE ESTA VERSIÓN
+═══════════════════════════════════════════════════════════════════════════
+
+📌 TIPO: Autoclicker con CURSOR MOVIDO
+
+El autoclicker MUEVE FÍSICAMENTE el cursor a las coordenadas fijadas en
+cada click.
+
+✅ VENTAJAS:
+   • Máxima compatibilidad con todos los juegos
+   • Funciona siempre, sin importar el tipo de ventana
+   • Más fácil de ver qué está haciendo (ves el cursor moverse)
+   • Ideal para testing y ver que funciona correctamente
+
+❌ DESVENTAJAS:
+   • NO puedes usar el cursor para otras cosas mientras está activo
+   • El cursor "salta" a las coordenadas fijadas cada click
+   • Si mueves el cursor, se volverá a mover a las coordenadas
+
+═══════════════════════════════════════════════════════════════════════════
+  ⚙️ CÓMO FUNCIONA
+═══════════════════════════════════════════════════════════════════════════
+
+1. Presionas F6 → Fija coordenadas (X, Y)
+
+2. Presionas F1 → Activa autoclicker
+
+   BUCLE INFINITO:
+   ┌─────────────────────────────────────┐
+   │ 1. Mueve cursor a (X, Y)            │
+   │ 2. Click down + up instantáneo      │
+   │ 3. Espera delay (100ms/50ms/20ms)   │
+   │ 4. Vuelve al paso 1                 │
+   └─────────────────────────────────────┘
+
+3. Presionas F2 → Detiene autoclicker
+
+═══════════════════════════════════════════════════════════════════════════
+  🚀 VELOCIDADES DISPONIBLES
+═══════════════════════════════════════════════════════════════════════════
+
+🐢 LENTA:    10 CPS  (100ms delay) - Control total
+⚖️ MEDIA:    20 CPS  (50ms delay)  - Balance perfecto ⭐ RECOMENDADA
+🚀 RÁPIDA:   50 CPS  (20ms delay)  - Velocidad máxima
+
+(CPS = Clicks Por Segundo)
+
+═══════════════════════════════════════════════════════════════════════════
+  🛠️ COMPILACIÓN
+═══════════════════════════════════════════════════════════════════════════
+
+MÉTODO 1: Script automático
+   1. Abrir CMD en esta carpeta
+   2. Ejecutar: build.bat
+   3. El .exe estará en build\AutoElfather.exe
+
+MÉTODO 2: Manual
+   dotnet publish -c Release -r win-x64 --self-contained true ^
+   -p:PublishSingleFile=true -o .\build
+
+REQUISITO: .NET 6.0 SDK o superior
+   https://dotnet.microsoft.com/download/dotnet/6.0
+
+═══════════════════════════════════════════════════════════════════════════
+  📖 USO RECOMENDADO
+═══════════════════════════════════════════════════════════════════════════
+
+✅ USA ESTA VERSIÓN SI:
+   • Quieres máxima compatibilidad
+   • No necesitas usar el cursor para otras cosas mientras clickeas
+   • Prefieres ver el cursor moverse y confirmar que funciona
+   • Es tu primera vez usando un autoclicker
+
+❌ USA LA OTRA VERSIÓN (CursorLibre) SI:
+   • Necesitas usar el cursor libremente mientras clickeas
+   • Quieres hacer otras cosas en la PC mientras el bot trabaja
+   • Prefieres que el cursor NO se mueva
+
+═══════════════════════════════════════════════════════════════════════════
+  ⚠️ IMPORTANTE
+═══════════════════════════════════════════════════════════════════════════
+
+• NO muevas la ventana del juego después de fijar coordenadas (F6)
+• Si la mueves, presiona F6 de nuevo para fijar coordenadas nuevamente
+• El cursor SIEMPRE se moverá a las coordenadas en cada click
+• Puedes cambiar de velocidad (pestañas) mientras está activo
+
+═══════════════════════════════════════════════════════════════════════════
+  📁 ARCHIVOS DEL PROYECTO
+═══════════════════════════════════════════════════════════════════════════
+
+AutoElfather.csproj         - Configuración del proyecto
+Program.cs                  - Punto de entrada
+MainForm.cs                 - Lógica principal del autoclicker
+HelpForm.cs                 - Ventana de ayuda integrada
+LauncherForm.cs             - Launcher del juego
+build.bat                   - Script de compilación automático
+README.md                   - Documentación completa
+QUICKSTART.md               - Guía rápida para tu amigo
+.gitignore                  - Exclusiones de git
+
+═══════════════════════════════════════════════════════════════════════════
+  💝 MENSAJE
+═══════════════════════════════════════════════════════════════════════════
+
+Esta es la versión tradicional del autoclicker, donde el cursor se mueve
+físicamente a las coordenadas fijadas en cada click.
+
+Si prefieres usar el cursor libremente mientras clickea, revisa la otra
+versión en la carpeta: AutoElfatherWindows_CursorLibre
+
+¡FELIZ CUMPLEAÑOS! 🎂🎉
+
+BBBBRRRRRRRRRR 🚀
+
+═══════════════════════════════════════════════════════════════════════════
+
+Made with ❤️ by erKabesa aka JkPedro

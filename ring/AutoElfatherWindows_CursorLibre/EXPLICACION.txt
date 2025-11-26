@@ -1,0 +1,169 @@
+╔══════════════════════════════════════════════════════════════════════════╗
+║                                                                          ║
+║         AUTO ELFATHER - CURSOR LIBRE                                    ║
+║         El boss del sexxxx - Creado por erKabesa aka JkPedro            ║
+║                                                                          ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════════════════
+  🎯 CARACTERÍSTICAS DE ESTA VERSIÓN
+═══════════════════════════════════════════════════════════════════════════
+
+📌 TIPO: Autoclicker con CURSOR LIBRE
+
+El autoclicker hace clicks en las coordenadas fijadas, pero PERMITE que
+uses el cursor libremente para otras cosas.
+
+✅ VENTAJAS:
+   • Puedes usar el cursor normalmente mientras el bot clickea
+   • Ideal para hacer otras cosas en la PC mientras juegas
+   • El cursor permanece donde lo dejes (excepto micro-saltos)
+   • Perfecto para multitasking
+
+❌ DESVENTAJAS:
+   • El cursor hace "micro-saltos" rápidos (apenas perceptibles)
+   • Puede ser menos compatible con algunos juegos muy específicos
+   • Requiere un poco más de procesamiento
+
+═══════════════════════════════════════════════════════════════════════════
+  ⚙️ CÓMO FUNCIONA
+═══════════════════════════════════════════════════════════════════════════
+
+1. Presionas F6 → Fija coordenadas (X, Y)
+
+2. Presionas F1 → Activa autoclicker
+
+   BUCLE INFINITO:
+   ┌──────────────────────────────────────────┐
+   │ 1. Guarda posición actual del cursor     │
+   │ 2. Mueve cursor a (X, Y)                 │
+   │ 3. Click down + up instantáneo           │
+   │ 4. RESTAURA posición original del cursor │
+   │ 5. Espera delay (100ms/50ms/20ms)        │
+   │ 6. Vuelve al paso 1                      │
+   └──────────────────────────────────────────┘
+
+3. Presionas F2 → Detiene autoclicker
+
+IMPORTANTE: El cursor "salta" a las coordenadas por una fracción de
+milisegundo, pero vuelve inmediatamente a donde estaba. Esto permite
+que uses el cursor libremente.
+
+═══════════════════════════════════════════════════════════════════════════
+  🚀 VELOCIDADES DISPONIBLES
+═══════════════════════════════════════════════════════════════════════════
+
+🐢 LENTA:    10 CPS  (100ms delay) - Control total
+⚖️ MEDIA:    20 CPS  (50ms delay)  - Balance perfecto ⭐ RECOMENDADA
+🚀 RÁPIDA:   50 CPS  (20ms delay)  - Velocidad máxima
+
+(CPS = Clicks Por Segundo)
+
+═══════════════════════════════════════════════════════════════════════════
+  🛠️ COMPILACIÓN
+═══════════════════════════════════════════════════════════════════════════
+
+MÉTODO 1: Script automático
+   1. Abrir CMD en esta carpeta
+   2. Ejecutar: build.bat
+   3. El .exe estará en build\AutoElfather_V2.exe
+
+MÉTODO 2: Manual
+   dotnet publish -c Release -r win-x64 --self-contained true ^
+   -p:PublishSingleFile=true -o .\build
+
+REQUISITO: .NET 6.0 SDK o superior
+   https://dotnet.microsoft.com/download/dotnet/6.0
+
+═══════════════════════════════════════════════════════════════════════════
+  📖 USO RECOMENDADO
+═══════════════════════════════════════════════════════════════════════════
+
+✅ USA ESTA VERSIÓN SI:
+   • Necesitas usar el cursor mientras el bot clickea
+   • Quieres hacer otras cosas en la PC (navegar, chatear, etc.)
+   • Prefieres libertad total del cursor
+   • No te importan los micro-saltos del cursor
+
+❌ USA LA OTRA VERSIÓN (V1) SI:
+   • Prefieres máxima compatibilidad
+   • No necesitas usar el cursor para otras cosas
+   • Quieres ver claramente dónde clickea el bot
+   • Los micro-saltos del cursor te molestan
+
+═══════════════════════════════════════════════════════════════════════════
+  💡 TIPS PROFESIONALES
+═══════════════════════════════════════════════════════════════════════════
+
+• Los "micro-saltos" son normales - el cursor salta y vuelve tan rápido
+  que apenas se nota
+
+• Puedes moverte el cursor libremente, escribir, hacer click en otros
+  lugares - el bot seguirá clickeando en las coordenadas fijadas
+
+• Si ves que el cursor "parpadea", es completamente normal - está
+  saltando a las coordenadas y volviendo
+
+• Velocidades recomendadas con cursor libre:
+  - Lenta (10 CPS): Casi imperceptible
+  - Media (20 CPS): Se nota un poco pero usable
+  - Rápida (50 CPS): Se nota más, pero sigues pudiendo usar el cursor
+
+═══════════════════════════════════════════════════════════════════════════
+  ⚠️ IMPORTANTE
+═══════════════════════════════════════════════════════════════════════════
+
+• NO muevas la ventana del juego después de fijar coordenadas (F6)
+• Si la mueves, presiona F6 de nuevo para fijar coordenadas nuevamente
+• El cursor hará micro-saltos rápidos (es normal y esperado)
+• Puedes cambiar de velocidad (pestañas) mientras está activo
+• Mientras más rápida la velocidad, más "parpadeo" verás en el cursor
+
+═══════════════════════════════════════════════════════════════════════════
+  🔍 DIFERENCIAS CON V1
+═══════════════════════════════════════════════════════════════════════════
+
+┌─────────────────┬────────────────────┬────────────────────┐
+│ Característica  │ V1 (Cursor Movido) │ V2 (Cursor Libre)  │
+├─────────────────┼────────────────────┼────────────────────┤
+│ Cursor se mueve │ SÍ, permanente     │ SÍ, pero regresa   │
+│ Usar cursor     │ NO                 │ SÍ ✅               │
+│ Compatibilidad  │ Máxima             │ Alta               │
+│ Micro-saltos    │ NO                 │ SÍ (normales)      │
+│ Multitasking    │ NO                 │ SÍ ✅               │
+└─────────────────┴────────────────────┴────────────────────┘
+
+═══════════════════════════════════════════════════════════════════════════
+  📁 ARCHIVOS DEL PROYECTO
+═══════════════════════════════════════════════════════════════════════════
+
+AutoElfather.csproj         - Configuración del proyecto
+Program.cs                  - Punto de entrada
+MainForm.cs                 - Lógica principal (con cursor libre!)
+HelpForm.cs                 - Ventana de ayuda integrada
+LauncherForm.cs             - Launcher del juego
+build.bat                   - Script de compilación automático
+README.md                   - Documentación completa
+QUICKSTART.md               - Guía rápida para tu amigo
+.gitignore                  - Exclusiones de git
+
+═══════════════════════════════════════════════════════════════════════════
+  💝 MENSAJE
+═══════════════════════════════════════════════════════════════════════════
+
+Esta es la versión AVANZADA del autoclicker, con la funcionalidad de
+cursor libre que permite multitasking total.
+
+La técnica usada es: guardar posición → mover → click → restaurar
+Esto ocurre en milisegundos, dejándote usar el cursor normalmente.
+
+Si prefieres que el cursor se quede en las coordenadas fijadas y no
+hacer otras cosas mientras el bot trabaja, usa la V1.
+
+¡FELIZ CUMPLEAÑOS! 🎂🎉
+
+BBBBRRRRRRRRRR 🚀
+
+═══════════════════════════════════════════════════════════════════════════
+
+Made with ❤️ by erKabesa aka JkPedro

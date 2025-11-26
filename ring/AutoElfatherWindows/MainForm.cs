@@ -79,7 +79,7 @@ namespace AutoElfather
 
         private void SetupForm()
         {
-            this.Text = "Auto elfather, el boss del sexxxx";
+            this.Text = "Auto elfather V1, el boss del sexxxx";
             this.Size = new Size(900, 650);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;

@@ -5,7 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>icon.ico</ApplicationIcon>
-    <AssemblyName>AutoElfather</AssemblyName>
+    <AssemblyName>AutoElfather_V1</AssemblyName>
     <Product>Auto elfather, el boss del sexxxx</Product>
     <Authors>erKabesa aka JkPedro</Authors>
     <Version>1.0.0</Version>
