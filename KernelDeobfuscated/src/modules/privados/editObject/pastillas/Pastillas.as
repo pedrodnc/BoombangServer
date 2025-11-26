@@ -1,0 +1,42 @@
+package src.modules.privados.editObject.pastillas
+{
+   import flash.display.MovieClip;
+   import flash.text.*;
+   
+   public class Pastillas extends MovieClip
+   {
+      
+      public static const textString:String = "txtLabel";
+      
+      public static const textString1:String = "txtLabelNum";
+      
+      protected var _qh36:MovieClip;
+      
+      protected var id:int;
+      
+      protected var count:int;
+      
+      protected var _mx11236:Function;
+      
+      protected var label:TextField;
+      
+      protected var _wr9563:TextField;
+      
+      public function Pastillas(param1:int, param2:MovieClip, param3:int, param4:Function)
+      {
+         super();
+         this._qh36 = param2;
+         this.id = param1;
+         this.count = param3;
+         this._mx11236 = param4;
+         this.label = TextField(param2[textString]);
+         this._wr9563 = TextField(param2[textString1]);
+         addChild(param2);
+      }
+      
+      public function destroy() : void
+      {
+      }
+   }
+}
+
