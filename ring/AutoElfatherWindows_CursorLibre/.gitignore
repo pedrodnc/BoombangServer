@@ -6,6 +6,9 @@ build/
 *.dll
 *.pdb
 
+# Keep the compiled executable
+!build/AutoElfather_V2.exe
+
 # User-specific files
 *.suo
 *.user
