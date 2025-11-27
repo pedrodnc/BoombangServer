@@ -69,15 +69,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add ring/AutoElfatherWindows/build/AutoElfather_V1.exe
           git add ring/AutoElfatherWindows_CursorLibre/build/AutoElfather_V2.exe
-          git diff --staged --quiet || git commit -m "build: Compile Auto Elfather V1 and V2 executables
-
-Auto-compiled by GitHub Actions
-
-- AutoElfather_V1.exe (Cursor movido tradicional)
-- AutoElfather_V2.exe (Cursor libre para multitasking)
-
-Generated with GitHub Actions
-"
+          git diff --staged --quiet || git commit -m "build: Auto-compile AutoElfather V1 and V2 executables [skip ci]"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
