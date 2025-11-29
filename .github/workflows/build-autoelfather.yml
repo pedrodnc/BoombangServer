@@ -1,0 +1,78 @@
+name: Build Auto Elfather
+
+on:
+  # Trigger on push to AutoElfather directories
+  push:
+    paths:
+      - 'ring/AutoElfatherWindows/**'
+      - 'ring/AutoElfatherWindows_CursorLibre/**'
+      - '.github/workflows/build-autoelfather.yml'
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Compile Auto Elfather V1 & V2
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 6.0
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: Restore dependencies V1
+        run: dotnet restore ring/AutoElfatherWindows/AutoElfather.csproj
+
+      - name: Build V1 (Cursor Movido)
+        run: |
+          dotnet publish ring/AutoElfatherWindows/AutoElfather.csproj `
+            -c Release `
+            -r win-x64 `
+            --self-contained true `
+            -p:PublishSingleFile=true `
+            -o ring/AutoElfatherWindows/build
+
+      - name: Restore dependencies V2
+        run: dotnet restore ring/AutoElfatherWindows_CursorLibre/AutoElfather.csproj
+
+      - name: Build V2 (Cursor Libre)
+        run: |
+          dotnet publish ring/AutoElfatherWindows_CursorLibre/AutoElfather.csproj `
+            -c Release `
+            -r win-x64 `
+            --self-contained true `
+            -p:PublishSingleFile=true `
+            -o ring/AutoElfatherWindows_CursorLibre/build
+
+      - name: Upload V1 executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: AutoElfather_V1
+          path: ring/AutoElfatherWindows/build/AutoElfather_V1.exe
+          if-no-files-found: error
+
+      - name: Upload V2 executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: AutoElfather_V2
+          path: ring/AutoElfatherWindows_CursorLibre/build/AutoElfather_V2.exe
+          if-no-files-found: error
+
+      - name: Commit compiled executables
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add ring/AutoElfatherWindows/build/AutoElfather_V1.exe
+          git add ring/AutoElfatherWindows_CursorLibre/build/AutoElfather_V2.exe
+          git diff --staged --quiet || git commit -m "build: Auto-compile AutoElfather V1 and V2 executables [skip ci]"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}

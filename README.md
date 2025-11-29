@@ -2,13 +2,25 @@
 
 Servidor de juego BoomBang con arquitectura multi-capa (Laravel + Node.js + C# Emulator)
 
+## ⚠️ Importante: Flash Player y Ruffle
+
+**El cliente del juego está desarrollado en Flash (archivos .swf)**. Como Adobe Flash Player fue descontinuado en 2020 y los navegadores modernos ya no lo soportan, este proyecto utiliza **Ruffle**, un emulador Flash open-source que funciona en navegadores modernos.
+
+### Ramas Disponibles
+
+- **`main`** - Versión estable con correcciones de seguridad (sin Ruffle)
+- **`feature/ruffle-flash-emulator`** - Implementación de Ruffle para soporte en navegadores modernos ⭐ **RECOMENDADA**
+
+**📖 Documentación de Ruffle:** Ver [RUFFLE.md](RUFFLE.md)
+
 ## Arquitectura del Sistema
 
-El proyecto consta de tres componentes principales:
+El proyecto consta de cuatro componentes principales:
 
-1. **Laravel Web Application** (`boombang-2022-app-master/`) - Frontend y API web
-2. **Node.js Socket Server** (`boombang-2022-app-master/node/`) - Servidor WebSocket para comunicación en tiempo real
-3. **C# Emulator** (`boombang-2022-emulator-main/`) - Servidor del juego y lógica de negocio
+1. **Flash Client** (`boombang-2022-app-master/public/static/`) - Cliente del juego en Flash (ejecutado por Ruffle)
+2. **Laravel Web Application** (`boombang-2022-app-master/`) - Frontend y API web
+3. **Node.js Socket Server** (`boombang-2022-app-master/node/`) - Servidor WebSocket para comunicación en tiempo real
+4. **C# Emulator** (`boombang-2022-emulator-main/`) - Servidor del juego y lógica de negocio
 
 ## Requisitos del Sistema
 

@@ -1,0 +1,114 @@
+package src.tv.boombang.application.interactions.view
+{
+   import flash.display.*;
+   import flash.events.*;
+   import flash.utils.*;
+   import src.tv.boombang.application.global.gui.components.*;
+   import src.tv.boombang.application.interactions.*;
+   import src.tv.boombang.core.service_container.*;
+   import src.tv.boombang.core.service_container.services.resource_management.*;
+   
+   public class _rl1041 extends MovieClip
+   {
+      
+      public static const _mj8899:String = "acceptClickedEvent";
+      
+      public static const _yv14583:String = "rejectClickedEvent";
+      
+      private static const _if5805:String = "scenario_gui_repository.swf";
+      
+      private var _aj16139:Dictionary;
+      
+      private var _gw13414:MovieClip;
+      
+      private var _ip134:_ya5360;
+      
+      private var _sa10596:_qy9375;
+      
+      private var _ng5190:_qy9375;
+      
+      private var _ht10782:_om4028;
+      
+      private var _hp11997:Timer;
+      
+      public function _rl1041(param1:_ya5360)
+      {
+         this._aj16139 = new Dictionary();
+         super();
+         this._ip134 = param1;
+         this._aj16139[_ya5360._ov15204] = "KissIcon";
+         this._aj16139[_ya5360._vk7198] = "DrinkIcon";
+         this._aj16139[_ya5360._hd8501] = "FlowerIcon";
+         (_lh7543.get(_vy3822) as _vy3822)._vv13029([_if5805],this._ma5758);
+         this._hp11997 = new Timer(2500,1);
+         this._hp11997.addEventListener(TimerEvent.TIMER,this._mj790,false,0,true);
+      }
+      
+      public function destroy() : void
+      {
+         if(this._sa10596)
+         {
+            this._sa10596.removeEventListener(MouseEvent.CLICK,this._bc8168);
+            this._sa10596.destroy();
+            this._sa10596 = null;
+         }
+         if(this._ng5190)
+         {
+            this._ng5190.removeEventListener(MouseEvent.CLICK,this._fm3183);
+            this._ng5190.destroy();
+            this._ng5190 = null;
+         }
+         if(this._ht10782)
+         {
+            this._ht10782.destroy();
+            this._ht10782 = null;
+         }
+         if(this._hp11997)
+         {
+            this._hp11997.stop();
+            this._hp11997.removeEventListener(TimerEvent.TIMER,this._mj790);
+            this._hp11997 = null;
+         }
+      }
+      
+      public function _ry6622() : void
+      {
+         (this._gw13414["iconContainer"] as MovieClip).visible = false;
+         this._ht10782.visible = true;
+         this._hp11997.start();
+      }
+      
+      protected function _mj790(param1:TimerEvent) : void
+      {
+         (this._gw13414["iconContainer"] as MovieClip).visible = true;
+         this._ht10782.visible = false;
+      }
+      
+      private function _ma5758() : void
+      {
+         var _loc1_:_vy3822 = _lh7543.get(_vy3822) as _vy3822;
+         this._gw13414 = _loc1_._bn15619(_if5805,"InteractionTooltip");
+         this._sa10596 = new _qy9375(this._gw13414["acceptButton"]);
+         this._sa10596.addEventListener(MouseEvent.CLICK,this._bc8168,false,0,true);
+         this._ng5190 = new _qy9375(this._gw13414["rejectButton"]);
+         this._ng5190.addEventListener(MouseEvent.CLICK,this._fm3183,false,0,true);
+         this._ht10782 = new _om4028(this._gw13414["warningTextfield"]);
+         this._ht10782.visible = false;
+         this._ht10782.txt = "gui.interactions.nextToMe";
+         var _loc2_:MovieClip = _loc1_._bn15619(_if5805,this._aj16139[this._ip134]);
+         (this._gw13414["iconContainer"] as MovieClip).addChild(_loc2_);
+         addChild(this._gw13414);
+      }
+      
+      protected function _fm3183(param1:MouseEvent) : void
+      {
+         dispatchEvent(new Event(_yv14583));
+      }
+      
+      protected function _bc8168(param1:MouseEvent) : void
+      {
+         dispatchEvent(new Event(_mj8899));
+      }
+   }
+}
+

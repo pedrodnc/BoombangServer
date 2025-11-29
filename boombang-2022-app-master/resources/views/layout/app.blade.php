@@ -7,7 +7,8 @@
     @yield('title')
     <!-- Scripts -->
     <script src="{{ asset('js/library/common.js') }}"></script>
-    <script src="{{ asset('js/library/swfobject.js') }}"></script>
+    <!-- Ruffle Flash Emulator - Modern replacement for Flash Player -->
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
     <script src="{{ asset('js/library/socket.io.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     @stack('extra_scripts')

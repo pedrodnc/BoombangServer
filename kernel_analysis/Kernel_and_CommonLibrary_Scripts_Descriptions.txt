@@ -1,0 +1,1059 @@
+Here is the information organized by functionality for each SWF file.
+
+Kernel.swf
+Core Systems & Framework
+
+Service & Configuration Management
+
+tv/boombang/core/config/_sw9805.as: A singleton class that manages global application configuration, including notification and payment settings.
+
+tv/boombang/core/config/_bh8496.as: Configuration class for notifications, parsing XML to store icon sources and notification popup details (backgrounds, characters, image levels).
+
+tv/boombang/core/config/_vr1926.as: Configuration class for payment methods, loading and parsing payment options from an XML file, organized by country.
+
+tv/boombang/core/service_container/_lh7543.as: A singleton service container for managing application services (_wk782), allowing them to be added, retrieved, and their loading status tracked.
+
+tv/boombang/core/service_container/_rb9290.as: An abstract base class for services (_wk782), providing basic EventDispatcher functionality and enforcing start, stop, and _kn5152 methods to be implemented by subclasses.
+
+tv/boombang/core/service_container/_vw13249.as: Custom event class for service lifecycle events, such as when a service is ready (serviceReadyEvent) or stopped (serviceStoppedEvent).
+
+tv/boombang/core/service_container/_wk782.as: Interface defining the contract for an application service, extending _ea15462 to include start and stop methods.
+
+tv/boombang/core/_fg1060.as: A utility class providing static getters to access various core services and data singletons like _dw1395 (localization), _qv587 (user), and _hv12530 (global data).
+
+Resource Management
+
+tv/boombang/core/service_container/services/resource_management/_vy3822.as: The core resource management service, responsible for loading, caching, and providing access to various types of application assets (SWF, text, images) identified by an ID.
+
+tv/boombang/core/service_container/services/resource_management/_hc11274.as: Extends _vy3822 to manage cached resources (specifically SWF files), applying a least recently used (LRU) eviction strategy to maintain cache size.
+
+tv/boombang/core/service_container/services/resource_management/Resources/_gg3875.as: Base class for loadable resources, handling URL loading, basic progress, and I/O errors, including a decryption mechanism for binary data.
+
+tv/boombang/core/service_container/services/resource_management/Resources/_ku8086.as: Extends _gg3875 to specifically handle loading and providing Bitmap resources.
+
+tv/boombang/core/service_container/services/resource_management/Resources/_pk8106.as: Extends _gg3875 to specifically handle loading and providing text resources (String data), with options for uncompression.
+
+tv/boombang/core/service_container/services/resource_management/Resources/_xo11546.as: Extends _gg3875 to specifically handle loading and providing SWF resources, allowing extraction of MovieClip, Bitmap, or Sound definitions from the loaded SWF.
+
+tv/boombang/core/service_container/services/resource_management/_hh10181.as: Data class representing information about a resource file (path, name, type, size, no-cache ID).
+
+tv/boombang/core/service_container/services/resource_management/_qs2112.as: Type-safe enumeration defining different categories of resource file extensions (e.g., SWF, TEXT, image).
+
+Communications
+
+tv/boombang/core/communications/_kr10933.as: A static utility class for sending and listening to communication frames to/from the server.
+
+tv/boombang/core/communications/_bc9270.as: Event class representing a communication frame received from the server, containing flags and item data.
+
+tv/boombang/core/communications/_te13472.as: Defines numerous integer constants used as flags and sub-flags within the application's communication protocol.
+
+tv/boombang/application/communications/_uu4509.as: Handles various incoming communication frames from the server related to user status updates (superkey, email validated), level-ups, news, delayed gifts, silver coin rewards, and mission updates, often triggering pop-ups.
+
+Core Services
+
+tv/boombang/core/service_container/services/_dw1395.as: The localization service, responsible for loading and providing translated text phrases and formatting time durations.
+
+tv/boombang/core/service_container/services/_ht14109.as: Manages missions, handling their loading, updates, and providing a collection of current missions.
+
+tv/boombang/core/service_container/services/_qv587.as: A singleton service for user authentication, providing a method to authenticate users via social networks.
+
+tv/boombang/core/service_container/services/_wl11587.as: Google Analytics (GA) service, providing methods to track page views, events, social interactions, and custom variables using ExternalInterface.call.
+
+Core Utilities & Data Types
+
+tv/boombang/core/_be1002.as: A singleton class that tracks frame-rate performance and timing information for the application.
+
+tv/boombang/core/errors/_bc6516.as: Custom error class used for application-specific runtime exceptions, typically logging errors using _mr16168.
+
+tv/boombang/core/datatypes/_ly14211.as: A static data class that stores various global configuration parameters such as locale, version, base URLs, and other general settings.
+
+tv/boombang/core/datatypes/Tile.as: Represents a tile in a grid, with x and y coordinates, and can define an offset parent tile for hierarchical positioning.
+
+Common Libraries & Interfaces
+
+tv/boombang/commons/_is380.as: Custom event class for asset loading progress, completion, and errors, typically used by _vh5894 and _sg3635.
+
+tv/boombang/commons/_jq5572.as: Generic asset loader class for text or image assets, handling URL requests, progress, and error events.
+
+tv/boombang/commons/_sg3635.as: Base class for display components that load assets, handling the asset loading lifecycle and providing methods for display, hiding, and movement.
+
+tv/boombang/commons/_vh5894.as: Asset wrapper class for loading either visual (SWF) or text assets, including decryption logic, progress tracking, and providing access to loaded content or definitions within SWFs.
+
+tv/boombang/commons/loadables/_ay13187.as: Manages a group of ILoadable objects, executing a callback function once all of them have completed loading.
+
+tv/boombang/commons/loadables/_ea15462.as: Interface for loadable objects, defining properties and methods for checking loading status and adding/removing load complete listeners.
+
+tv/boombang/commons/interfaces/_dt4939.as: Interface defining a contract for objects that have an id property of type String.
+
+tv/boombang/commons/interfaces/_ff15513.as: Interface for pop-up components, extending _jk15536 and requiring a view property that returns a DisplayObject.
+
+tv/boombang/commons/interfaces/_jk15536.as: Generic interface defining a destroy() method for cleanup.
+
+tv/boombang/commons/utils/_fh6432.as: Base class for creating type-safe enumeration patterns.
+
+tv/boombang/commons/utils/_kw5987.as: Provides utility methods for validating strings, such as checking if two strings are different, length constraints, alphanumeric requirements, and email format.
+
+tv/boombang/commons/utils/_tq2768.as: A utility class to provide static access to the main Stage object, ensuring it's initialized only once.
+
+UI Library & Window Management
+
+Window & Step Management
+
+tv/boombang/library/windows/_lx1779.as: Base class for windows, extending _rn8936, managing child steps and resource loading.
+
+tv/boombang/library/windows/_pr2018.as: A singleton class for managing (adding, removing, getting) various display objects, likely pop-up windows or interactive elements.
+
+tv/boombang/library/steps/_pd14567.as: Base class for a step in a multi-step process, extending MovieClip and implementing _jk15536 and _dt4939, with an id and dispatching _pm4313 events.
+
+tv/boombang/library/steps/_pm4313.as: Custom event class for window interactions within multi-step processes, defining event types like completion, next, back, and close.
+
+tv/boombang/library/steps/_wo727.as: Manages a sequence of steps (_pd14567 objects), adding them to itself and handling their completion events.
+
+tv/boombang/application/global/gui/windows/_ja3764.as: Base class for generic windows, providing common UI elements like a close button, a title, and methods for positioning and setting background color. It extends _pd14567.
+
+tv/boombang/application/global/gui/windows/_va2030.as: Base class for windows with "accept" and "cancel" buttons, handling common button events and providing methods for form validation. It extends _ja3764.
+
+tv/boombang/application/global/gui/windows/_ei5768.as: Base class for windows requiring password-like input and confirmation (e.g., new password, new email), including validation logic for two input fields.
+
+Popup Management
+
+tv/boombang/library/popup/PopUpManager.as: A static facade for creating, removing, and centering pop-ups, delegating to an internal IPopUpManager implementation.
+
+tv/boombang/library/popup/IPopUpManager.as: Interface defining the contract for a pop-up manager, including methods for creating, removing, and centering pop-ups.
+
+tv/boombang/library/popup/PopUpManagerImpl.as: The concrete implementation of IPopUpManager, handling the actual logic for pop-up lifecycle, including managing a queue of pop-ups and displaying background overlays.
+
+tv/boombang/library/popup/_aq4817.as: Base class for animated pop-ups, extending _rn8936 and implementing _ff15513, applying a "springy" scale animation when appearing and disappearing.
+
+tv/boombang/library/popup/_mu12387.as: Creates a full-screen radial gradient overlay, likely used as a dimmed background for pop-up windows.
+
+tv/boombang/library/popup/_tw2454.as: A data class that wraps a pop-up (_ff15513) with its parent container, visibility, and a background color, and provides a destroy method for cleanup.
+
+Generic UI Components
+
+tv/boombang/library/list/List.as: A flexible UI component for displaying lists of items, supporting vertical or horizontal layouts, custom item renderers, and selection events.
+
+tv/boombang/library/list/_ck5955.as: Interface defining the contract for items renderable within a List component, including setting/getting data and handling selection states.
+
+tv/boombang/library/list/_ye11838.as: Custom event class for List component interactions, specifically for item clicks and selections, carrying the associated item data.
+
+tv/boombang/application/global/gui/components/_cm4000.as: Base class for UI components, wrapping a MovieClip and providing common properties and methods for visibility, enabled state, and tab indexing.
+
+tv/boombang/application/global/gui/components/_rn8936.as: Base class for UI components that automatically position themselves relative to the stage or parent container, with configurable pivot points and offsets.
+
+tv/boombang/application/global/gui/components/_qy9375.as: Base class for interactive UI buttons, handling various mouse events, managing visual states (up, over, down, selected, disabled), and providing brightness adjustment.
+
+tv/boombang/application/global/gui/components/_va5249.as: A button component, extending _qy9375, that displays text and adjusts its size based on the text content.
+
+tv/boombang/application/global/gui/components/_ly6718.as: A specialized button component, extending _va5249, that visually indicates its disabled state with reduced alpha and a specific frame label.
+
+tv/boombang/application/global/gui/components/_re14376.as: A specialized button component, extending _qy9375, that displays a tooltip on mouse-over.
+
+tv/boombang/application/global/gui/components/_gn3649.as: A robust input field component for various types of text (password, email, code, nickname), including extensive validation, status indicators (OK, wrong, checking), and dynamic resizing.
+
+tv/boombang/application/global/gui/components/_co7276.as: A checkbox UI component, managing its visual state based on selection and dispatching click events.
+
+tv/boombang/application/global/gui/components/_ee13487.as: A custom radio button component, displaying a label and a selectable radio button, with event dispatching on selection.
+
+tv/boombang/application/global/gui/components/_cy1767.as: A combo box (dropdown list) UI component for selecting items from a list, supporting custom item rendering, sorting, and dispatching change events.
+
+tv/boombang/application/global/gui/components/_hx7529.as: Manages a scroll pane component, setting its content to an _xx2086 view and updating its scroll position.
+
+tv/boombang/application/global/gui/components/_xx2086.as: Manages a collection of display objects for a scrollable view, providing methods to add, remove, and destroy its items.
+
+tv/boombang/application/global/gui/components/_om4028.as: A text display component that wraps a MovieClip containing a TextField, providing simplified access to set text, visibility, color, and font size, with optional localization.
+
+tv/boombang/application/global/gui/components/_om4024.as: A text display component that wraps a MovieClip containing a TextField, providing simplified access to set text, visibility, color, and font size, with optional localization.
+
+tv/boombang/application/global/gui/components/_bi14833.as: A text display component (_om4028) with scrollbar support, displaying htmlText content and showing/hiding the scrollbar based on content overflow.
+
+tv/boombang/application/global/gui/components/_xg1747.as: A text display component (_om4028) specifically designed for text that may contain HTML, providing dynamic sizing and basic color control.
+
+tv/boombang/application/global/gui/components/ToolTip.as: A generic tooltip component that displays text, with customizable color, positioning (left or center adjustment), and dynamic sizing based on content.
+
+tv/boombang/application/global/gui/components/_ca11681.as: A customizable rectangular text bubble or tooltip component with rounded corners, adjustable padding, colors, font size, and anchor position.
+
+tv/boombang/application/global/gui/components/Image.as: A specialized image display component that loads a _vh5894 asset, shows a preloader (_wq11080), and adds the loaded image to itself.
+
+tv/boombang/application/global/gui/components/_eo12332.as: A component for displaying an icon with an optional title, loading an image asset and positioning it within a given MovieClip.
+
+tv/boombang/application/global/gui/components/_bm12889.as: A container for displaying banners, including a close button.
+
+tv/boombang/application/global/gui/components/_wq11080.as: Displays a loading spinner (process indicator) on screen, with configurable position.
+
+tv/boombang/application/global/gui/components/_wk9007.as: Type-safe enumeration defining various anchor or pivot points for UI component positioning (e.g., TOP, BOTTOM, CENTER).
+
+tv/boombang/application/global/gui/components/_pr14847.as: Interface defining properties for an object's index or position (_wg3624).
+
+Generic Windows
+
+tv/boombang/application/global/gui/windows/_bn9270.as: A generic confirmation/information window with a title, a main description, a warning, a question, and a single "accept" button.
+
+tv/boombang/application/global/gui/windows/_cw4332.as: A generic window displaying a single text description and an "accept" button, likely used for simple acknowledgments.
+
+tv/boombang/application/global/gui/windows/_rj10079.as: A generic data card window displaying a title and a central text message, often used for showing loading states or simple information.
+
+tv/boombang/application/global/gui/windows/_sn4365.as: A generic window for inputting a security key or code, including a description, a label for the input, and the _gn3649 input component.
+
+Application Features
+
+User Account Management
+
+tv/boombang/application/user/gui/windows/userOptions/_xy4433.as: Displays the main user options menu, including buttons for various settings (character, colors, email, password, etc.) and handling their clicks.
+
+tv/boombang/application/user/gui/windows/userOptions/_qa7471.as: A type-safe enumeration class defining various options available in the user setup menu (e.g., change character, email, password).
+
+tv/boombang/application/user/gui/windows/changeEmail/_ms3955.as: Manages the "Change Email" process, guiding the user through steps like entering a security key, providing a new email, and confirming the change.
+
+tv/boombang/application/user/gui/windows/changeEmail/_hs15823.as: Provides static factory methods to create various _ja3764 (window) instances used in the "Change Email" flow, including key input, loading, email entry, and completion windows.
+
+tv/boombang/application/user/gui/windows/changeEmail/_lx15697.as: A window displaying the completion of the email change process, including troubleshooting information.
+
+tv/boombang/application/user/gui/windows/changeNickName/_iw14805.as: Manages the "Change Nickname" process, guiding the user through steps like initial confirmation, entering a new nickname, validating it with the server, and showing success or error messages.
+
+tv/boombang/application/user/gui/windows/changeNickName/_dj3826.as: A window for entering a new nickname, providing a description, a label for the input field, and a warning message. It uses _bf8454 for input and handles nickname validation events.
+
+tv/boombang/application/user/gui/windows/changeNickName/_bf8454.as: A custom input field component for nicknames or passwords, including validation logic, status indicators (OK, wrong, checking), and dynamic suggestions.
+
+tv/boombang/application/user/gui/windows/changeNickName/_sr8850.as: A UI component that displays a message and a list of clickable nickname suggestions, often used in nickname change flows.
+
+tv/boombang/application/user/gui/windows/changeNickName/_nk9893.as: Custom event class for nickname-related events, specifically for nickname validation requests and server-offered nickname suggestions.
+
+tv/boombang/application/user/gui/windows/changePassword/_my2463.as: Manages the "Change Password" process, guiding the user through steps such as entering a security key and providing a new password.
+
+tv/boombang/application/user/gui/windows/changePassword/_fm9767.as: A window for changing a user's password, requiring the old password and validation of the new password.
+
+tv/boombang/application/user/gui/windows/changePassword/_su3536.as: Provides static factory methods to create various _ja3764 (window) instances used in the "Change Password" flow, including key input, loading, and password entry windows.
+
+tv/boombang/application/user/gui/windows/validateEmail/_mg401.as: Manages the email validation process, displaying steps for input, sending, success, or error, and communicating with the server.
+
+tv/boombang/application/user/gui/windows/validateEmail/_uj13184.as: A window for email validation, collecting user email and newsletter preference, and providing validation logic.
+
+tv/boombang/application/user/gui/windows/manageSubscriptions/_qb4293.as: Manages the process of changing email subscription preferences, showing steps for input, sending data, and confirming success or failure.
+
+tv/boombang/application/user/gui/windows/manageSubscriptions/_ne9550.as: A window for managing user email subscriptions, presenting a checkbox for newsletter preference.
+
+tv/boombang/application/user/gui/windows/editConnections/_gd6593.as: Manages the "Edit Connections" process, which can involve entering a security key, linking social accounts, or setting up a Boombang password. It handles different initial states based on the user's superkey status.
+
+tv/boombang/application/user/gui/windows/editConnections/_wa4625.as: Displays the "Edit Connections" window, allowing users to view and manage their linked social accounts. It provides options to link new accounts or unlink existing ones (with a confirmation step).
+
+tv/boombang/application/user/gui/windows/editConnections/_bx11177.as: A window for adding a Boombang password or changing the nickname when editing social connections. It validates input fields and communicates with the server.
+
+tv/boombang/application/user/gui/windows/editConnections/_kd5077.as: Provides static factory methods to create various _ja3764 (window) instances used in the "Edit Connections" flow, simplifying the creation of key input, loading, error, and connection management windows.
+
+tv/boombang/application/user/gui/windows/editConnections/_ye9613.as: A specialized button component for social network connections within the "Edit Connections" window, extending _td7832.
+
+tv/boombang/application/user/gui/windows/deleteAccount/_pj1345.as: Manages the "Delete Account" process, guiding the user through steps like entering a security key and confirming deletion.
+
+tv/boombang/application/user/gui/windows/deleteAccount/_ct9616.as: A confirmation window for account deletion, displaying warnings and requiring user confirmation.
+
+tv/boombang/application/user/gui/windows/deleteAccount/_am15808.as: Provides static factory methods to create various _ja3764 (window) instances used in the "Delete Account" flow, including key input, confirmation, loading, and error windows.
+
+tv/boombang/application/user/gui/windows/activateKey/_vv13897.as: Manages the "Activate Security Key" process, guiding the user through steps to enter and confirm a new security key.
+
+tv/boombang/application/user/gui/windows/activateKey/_hc7927.as: A window for activating a security key, presenting a description, a list of benefits, and input fields for the security key and its repetition.
+
+tv/boombang/application/user/gui/windows/deactivateKey/_rc964.as: Manages the process of deactivating a security key, displaying steps for confirmation, sending deactivation request, and showing success or error messages.
+
+tv/boombang/application/user/gui/windows/deactivateKey/_bu2692.as: Displays a form for deactivating a security key, including a description, a list of benefits, and a confirmation question.
+
+tv/boombang/application/user/gui/windows/cancelDeactivation/_ho2030.as: Manages the "Cancel Deactivation" process, displaying current deactivation progress and requiring a security key to cancel.
+
+tv/boombang/application/user/gui/windows/cancelDeactivation/_wl13876.as: A window displaying the deactivation progress, including a warning and a question, used to confirm the cancellation of account deactivation.
+
+tv/boombang/application/user/gui/windows/activateIntercambio/_uq4405.as: Manages the process of activating object exchange functionality, requiring a security key for verification.
+
+tv/boombang/application/user/gui/windows/_dd12060.as: A window class that presents a tooltip regarding account unprotected for exchange activation.
+
+tv/boombang/application/user/gui/windows/_jr4051.as: A window class that presents a tooltip regarding a security key in deactivation.
+
+tv/boombang/application/user/gui/windows/_la15609.as: A window class that presents a tooltip regarding security key activation, with a "next" button event.
+
+tv/boombang/application/communications/_ld5065.as: Provides static methods to send various communication frames related to user account management, including activating/deactivating security keys, changing passwords/emails, validating emails, linking social accounts, and deleting accounts.
+
+Social & Sharing
+
+tv/boombang/application/social/sharers/_is4546.as: Implements _of6728 to share content on Facebook using the Facebook Graph API feed dialog.
+
+tv/boombang/application/social/sharers/_ph14978.as: Implements _of6728 to share content on Twitter via a pop-up window using ExternalInterface.call.
+
+tv/boombang/application/social/sharers/_hq2026.as: Implements _of6728 to share content on Tuenti via a pop-up window using ExternalInterface.call.
+
+tv/boombang/application/social/sharers/_qr249.as: Implements _of6728 to share content on Boombang's internal platform, communicating with the server.
+
+tv/boombang/application/social/sharers/_of6728.as: Interface for social media sharing services, defining methods for initialization and sharing.
+
+tv/boombang/application/social/authenticators/_yy12562.as: Implements _be51 for Facebook authentication, using ExternalInterface.call to interact with Facebook's OAuth flow for login and account linking.
+
+tv/boombang/application/social/authenticators/_pn2586.as: Implements _be51 for Boombang's internal authentication, specifically handling account linking via server communication.
+
+tv/boombang/application/social/authenticators/_be51.as: Interface defining the contract for social network authentication services, including methods for initialization, login, linking, and logout.
+
+tv/boombang/application/social/datatypes/_sw5071.as: Type-safe enumeration for different social networks (Boombang, Facebook, Twitter, Tuenti), each encapsulating its corresponding sharer and authenticator services.
+
+tv/boombang/application/social/datatypes/_vw5755.as: Data class representing content to be shared on social media, including title, message, link, image, description, and caption.
+
+tv/boombang/application/global/gui/components/_wb14440.as: Displays a menu of social media sharing buttons (Boombang, Facebook, Twitter, Tuenti), handling clicks to initiate sharing on the respective platforms.
+
+tv/boombang/application/global/gui/components/_td7832.as: A social media button component, displaying an icon, handling click events to initiate sharing or linking, and providing visual feedback for different statuses (OK, wrong, checking).
+
+tv/boombang/application/communications/_vv145.as: Provides static methods to send various communication frames related to social network integration (Facebook, internal Boombang account), delayed gifts, and user account actions.
+
+tv/boombang/application/communications/_yv7531.as: Provides a static method to send a communication frame for sharing content (e.g., mission progress) to social networks.
+
+Payments
+
+tv/boombang/application/payments/gui/windows/_rp11988.as: The main entry point for the payment system, loading payment configuration and then presenting the _la12756 window for country and method selection.
+
+tv/boombang/application/payments/gui/windows/_la12756.as: A window for selecting payment methods, allowing users to choose a country and then a specific payment method from a list, which then loads the appropriate payment sub-window.
+
+tv/boombang/application/payments/gui/windows/_rs10876.as: Manages the list of available payment methods for a selected country, displaying them in a list and dispatching events when an item is selected.
+
+tv/boombang/application/payments/gui/windows/_cl7790.as: The main window for a specific payment method, guiding the user through steps like entering a code, validating it, or initiating an external payment pop-up.
+
+tv/boombang/application/payments/gui/windows/_fv15651.as: A window for payment methods requiring a code, displaying a description, info text, cost, and an input field for the code.
+
+tv/boombang/application/payments/gui/windows/_fw8568.as: A window for external payment methods (like credit card pop-ups), providing descriptions, an "open pop-up" button, and handling redirection to external URLs.
+
+tv/boombang/application/payments/gui/windows/_lc2774.as: A payment window for SMS/IVR methods, displaying details about how to make the payment (phone number, text to send), cost information, and an input field for the confirmation code.
+
+tv/boombang/application/payments/gui/windows/_qi1248.as: A payment window for PPC/CC methods (Credit Card/Prepaid Card), displaying details, subtitle, options for choosing amount, and handling promo information.
+
+tv/boombang/application/payments/gui/windows/_hb5002.as: A specialized payment window for PPC/PaySafeCard methods, displaying shop information (logos, online/physical), details, and an input for a payment code.
+
+tv/boombang/application/payments/gui/windows/_mo13034.as: A payment window for "NiceQuest" (PRC) method, displaying instructions, info text, and an input field for a code.
+
+tv/boombang/application/payments/gui/components/_ca5613.as: A button component representing a single payment method in a list, displaying its icon, type, and a "new" tag if applicable.
+
+tv/boombang/application/payments/gui/components/_sv1981.as: Displays an icon representing a payment method, combining a generic payment icon with a specific carrier/brand logo.
+
+tv/boombang/application/payments/gui/components/_wf3942.as: A radio button component representing a payment amount option, displaying both game coins and real currency values, and adjusting its layout based on text content.
+
+tv/boombang/application/payments/gui/components/_yb1551.as: Displays promotional information for a payment option, including a gift image or text for bonus credits/multipliers.
+
+tv/boombang/application/communications/_tk9805.as: Provides static methods to send communication frames related to payment processing, including validating payment codes and sending payment data.
+
+tv/boombang/core/datatypes/payments/_nv12424.as: Data class representing a payment method, including its type, phone number, text description, new status, carrier, associated changes (options), and info text.
+
+tv/boombang/core/datatypes/payments/_eb3747.as: Data class representing a payment option or "change" offered for a payment method, including price, credits, currency, and potential bonus items.
+
+tv/boombang/core/datatypes/payments/_ql2956.as: Data class representing limits or available amounts for a payment method.
+
+tv/boombang/core/datatypes/payments/_vf14426.as: Data class representing a payment provider's logo, including country, name, type, and whether an image is available.
+
+tv/boombang/core/datatypes/payments/_ws12490.as: Data class representing parameters for an external payment pop-up, including URL, method, and data fields.
+
+tv/boombang/core/datatypes/countries/_ta7764.as: Data class representing a country, including its ID, name, and a list of available payment methods.
+
+In-Game Objects & Interactions
+
+tv/boombang/library/objects/_fk7766.as: Manages the mapping of object names to their respective controller classes (defined in XML) and provides methods to load and instantiate these controller objects.
+
+tv/boombang/library/objects/ObjectCommunication.as: Provides a static utility method to retrieve MovieClip assets for objects from the resource management service.
+
+tv/boombang/library/objects/control/AssetsBaseObjects.as: Base class for non-animated scene objects, wrapping a MovieClip asset and providing access to its mcObject child.
+
+tv/boombang/library/objects/control/AssetsBaseObjectsAnimated.as: Base class for animated scene objects, similar to AssetsBaseObjects but extending BaseObjectsAnimado.
+
+tv/boombang/library/objects/control/AssetsBaseObjectsMascota.as: Base class for mascota (pet) scene objects, wrapping a MovieClip asset and providing access to its mcObject child.
+
+tv/boombang/library/objects/control/AssetsBaseObjectsSurpriseBox.as: Base class for "surprise box" scene objects, wrapping a MovieClip asset and providing access to its mcObject child.
+
+tv/boombang/library/objects/control/AutomaticClassAccess.as: Holds references to various controller classes (AdObject, BallonMovement, etc.) to ensure they are compiled and accessible by getDefinitionByName.
+
+tv/boombang/library/objects/control/controllers/AdObject.as: Controls scene objects that function as advertisements, handling click events to open URLs and roll-over events to display promotional text.
+
+tv/boombang/library/objects/control/controllers/BallonMovement.as: Controls balloon objects, handling click events to trigger "clicked" animations on their color components.
+
+tv/boombang/library/objects/control/controllers/FlyingStar.as: Controls "Flying Star" mascot objects. It has a constructor but no specific init or loop override, suggesting minimal dynamic behavior.
+
+tv/boombang/library/objects/control/controllers/Hada.as: Controls "Hada" (fairy) mascot objects, managing roll-over/roll-out animations and providing methods for retrieving mascot-related assets and editing UI.
+
+tv/boombang/library/objects/control/controllers/Loro002New.as: Controls "Loro002New" (parrot) mascot objects, managing eye animations (parpadeo, moverOjos), speaking animations, and UI for editing its configurable phrases.
+
+tv/boombang/library/objects/control/controllers/MovingLayer.as: Controls a scene object that represents a moving background layer, adjusting its position based on the scene's scroll and scale.
+
+tv/boombang/library/objects/control/controllers/OpenSarcophagus.as: Controls "Open Sarcophagus" objects, handling click events to trigger an "open" animation.
+
+tv/boombang/library/objects/control/controllers/Plant.as: Controls plant objects, managing their growth and water status with timers, updating animations based on progress, and displaying a panel for interaction.
+
+tv/boombang/library/objects/control/controllers/PlantFinal.as: Controls "final" plant objects, handling their display, initial animations, and interaction for activating them.
+
+tv/boombang/library/objects/control/controllers/Puppy001New.as: Controls "Puppy001New" objects, managing a randomized animation counter to trigger an animation.
+
+tv/boombang/library/objects/control/controllers/SurpriseBox.as: Controls "Surprise Box" objects, enabling click interaction for the owner to activate the box.
+
+tv/boombang/library/objects/control/controllers/TrophiesWithRanking.as: Controls trophy objects with ranking information, dynamically setting text fields for ranking and year based on object description.
+
+tv/boombang/application/objects/drag/_xl11610.as: Manages the drag-and-drop operations for objects in the scene, determining the appropriate drag handler based on object type and handling the start/stop of dragging.
+
+tv/boombang/application/objects/drag/_ut10448.as: Base class for drag-and-drop functionality for scene objects, managing visual feedback, positioning, and interaction with the scene grid.
+
+tv/boombang/application/objects/drag/_er12035.as: Handles the drag-and-drop logic for stackable objects (like columns), adjusting their vertical position on the scene grid.
+
+tv/boombang/application/objects/drag/_yc3885.as: Handles the drag-and-drop logic for objects that are placed freely on the scene, without snapping to a grid or stacking.
+
+tv/boombang/application/interactions/controller/_cl11803.as: Manages incoming social interaction invitations, creating and tracking _qv7383 objects, and handling their acceptance or rejection.
+
+tv/boombang/application/interactions/controller/_qv7383.as: Represents a pending social interaction invitation, displaying an interaction tooltip (_rl1041) near the inviting user and handling acceptance or rejection events.
+
+tv/boombang/application/interactions/view/_rl1041.as: Displays an interaction tooltip, showing icons for specific interaction types along with accept/reject buttons and a temporary warning message.
+
+tv/boombang/application/interactions/_ya5360.as: Type-safe enumeration for different types of social interactions (e.g., kiss, drink, flower).
+
+tv/boombang/application/communications/_cp9761.as: Provides a static method to send a communication frame related to getting object information.
+
+tv/boombang/application/communications/_je9630.as: Provides a static method to send a communication frame containing an array of items and a string, likely for social interaction or game-related data.
+
+tv/boombang/application/communications/_yp4672.as: Provides static methods to send communication frames related to social interactions, such as sending, allowing, rejecting, or accepting interactions.
+
+tv/boombang/core/datatypes/objects/_jv10258.as: Data class representing an object in the scene, including its ID, type, asset names, flip state, category, properties, and count.
+
+NPC (Non-Player Character) Management
+
+tv/boombang/application/npc/gui/window/games/_bw347.as: Manages the flow for joining multiplayer games, including initial registration, payment, confirmation, withdrawal, and handling various server responses.
+
+tv/boombang/application/npc/gui/window/_fy5262.as: Manages event participation by allowing users to input a code. It checks the event's status and guides the user through code input, sending, and result feedback.
+
+tv/boombang/application/npc/gui/window/gameSinglePlayer/_uh15093.as: The entry point window for single-player games, presenting an initial registration/information step before launching the game.
+
+tv/boombang/application/communications/_li11200.as: Provides static methods to send communication frames related to events, specifically for getting event status and submitting event codes.
+
+tv/boombang/core/datatypes/npc/_mk4174.as: Data class representing an NPC, including its ID, type, name, position, orientation, and specific properties based on its type (e.g., game ID, talk message).
+
+tv/boombang/core/datatypes/npc/_hc8062.as: Type-safe enumeration for different types of NPCs (Non-Player Characters).
+
+Navigation Menu
+
+tv/boombang/application/navigation/gui/windows/_vd9631.as: The main navigation menu window, acting as a container for _fq13166 and handling top-level navigation events, including analytics tracking for tab selections.
+
+tv/boombang/application/navigation/gui/windows/_fq13166.as: Manages the display of various navigation lists (areas, games, islands, houses, search) based on selected tabs, handling the switching between different sub-navigation components.
+
+tv/boombang/application/navigation/gui/components/_wa1146.as: Base class for navigation list components, handling common elements like progress indicators, scroll panes, and processing server data to populate lists of _kn4108 objects.
+
+tv/boombang/application/navigation/gui/components/_cu13655.as: Displays a list of navigation entries (areas or games) in a hierarchical fashion, allowing users to drill down into sub-channels or enter specific areas/games.
+
+tv/boombang/application/navigation/gui/components/_gm11872.as: Displays a list of islands, with options to view all, my islands, favorites, or special event islands. It also includes a combo box for selecting special events and a button to create new islands.
+
+tv/boombang/application/navigation/gui/components/_hb8071.as: Displays a list of houses, with options to view all houses, favorite houses, or the user's own house.
+
+tv/boombang/application/navigation/gui/components/_lq13858.as: A search component within the navigation menu, providing an input field and a search button to find specific areas, islands, or houses by name.
+
+tv/boombang/application/navigation/gui/components/_in2808.as: A clickable item renderer for navigation lists (areas, islands, games, houses), displaying a title, amount/capacity, and various icons (world, island, house, game). It supports favoriting and drilling down into sub-lists.
+
+tv/boombang/application/navigation/gui/components/_nh909.as: A clickable item renderer for sub-lists within the navigation menu, similar to _in2808 but without the favoriting functionality.
+
+tv/boombang/application/navigation/events/_pw5334.as: Custom event class for navigation menu interactions, defining various event types for tab selection, channel requests, island creation, and house/island entry/favoriting.
+
+tv/boombang/application/global/gui/components/_oe1976.as: Manages a horizontal list of navigation tabs (_lg6078 items), displaying them using a List component and dispatching events on tab selection.
+
+tv/boombang/application/global/gui/components/_rs7737.as: An item renderer for navigation tabs, displaying an icon or title and indicating its position in the tab menu (first, middle, last).
+
+tv/boombang/application/global/gui/components/_uw10230.as: A search input component for lists or rankings, providing an input field (_gn3649) and a search button, validating input length before dispatching a search event.
+
+tv/boombang/application/communications/_co12486.as: Provides static methods to send various communication frames related to navigation (e.g., requesting lists of areas, islands, games, or setting/removing favorites).
+
+tv/boombang/core/datatypes/navigationMenu/_kn4108.as: Data class representing a single entry in the navigation menu (e.g., an area, island, or game), containing its type, ID, name, capacity, and other related metrics.
+
+tv/boombang/core/datatypes/navigationMenu/_cd9992.as: Type-safe enumeration for the main tabs in the navigation menu (e.g., areas, games, islands, houses, search).
+
+tv/boombang/core/datatypes/navigationMenu/_hj3512.as: Type-safe enumeration for various types of navigation menu entries (e.g., all, public, private, special event, favorite).
+
+tv/boombang/core/datatypes/navigationMenu/_lg6078.as: Data class representing a navigation menu button, including its ID, a flag for special functionality (like search), an asset path, and its associated _cd9992 type.
+
+tv/boombang/core/datatypes/navigationMenu/_rj12650.as: Type-safe enumeration for various categories of channels or rooms within the navigation system (e.g., public, private, game-specific).
+
+tv/boombang/core/datatypes/navigationMenu/_xr7952.as: Data class representing a simple item with an ID and a name, used in contexts like a combo box for special islands.
+
+Missions
+
+tv/boombang/application/missions/gui/windows/_sl13397.as: Manages the missions feature, displaying a "Missions" button in the UI which, when clicked, opens the _ej9925 missions list window.
+
+tv/boombang/application/missions/gui/windows/_tn795.as: Displays a button for accessing missions, applying an animated entry effect and updating a title field.
+
+tv/boombang/application/missions/gui/windows/_ej9925.as: Displays a list of missions and their details, allowing users to view individual mission information.
+
+tv/boombang/application/missions/gui/components/_vk10710.as: Manages a paginated list of missions, displaying them using _vo1562 item renderers and providing navigation buttons for previous/next pages.
+
+tv/boombang/application/missions/gui/components/_vo1562.as: An item renderer for displaying a single mission in a list, showing its title, completion status (done icon), and reward amount.
+
+tv/boombang/application/missions/gui/components/_bx5566.as: Displays the detailed information for a selected mission, including its title, body text, reward, and an "earn" value, with a back button to return to the mission list.
+
+tv/boombang/application/communications/_yn15098.as: Provides a static method to send a communication frame to request a list of missions.
+
+tv/boombang/core/datatypes/missions/_mj15721.as: Data class representing a mission, storing its ID, status (e.g., _ok5260 for completed), and a reward value (_ec8491).
+
+Popups & Notifications
+
+tv/boombang/application/popup/_sh16135.as: Displays a level-up notification pop-up, showing congratulations messages, achieved level, won items, and social sharing options.
+
+tv/boombang/application/popup/_no7530.as: Displays a mission completion pop-up, showing title, subtitle, description, reward icon, and social sharing options.
+
+tv/boombang/application/popup/_xv5745.as: Displays a "delayed gift" notification pop-up, showing title, subtitle, explanation, a single gift icon, and social sharing options.
+
+tv/boombang/application/popup/_gw1437.as: Displays a news notification pop-up, showing a title and multiple description fields, with a close button.
+
+tv/boombang/application/popup/_lp6667.as: Displays a small, timed notification pop-up (e.g., for silver coin rewards or mission progress), with customizable text and a short display duration before auto-closing.
+
+tv/boombang/application/popup/_iy5611.as: Displays an in-game tutorial pop-up for specific games, showing sequential steps with text and corresponding visual content, and allowing navigation between steps.
+
+tv/boombang/application/popup/components/tutorials/_nd4859.as: Manages the display of individual tutorial steps within a game tutorial, loading and showing the correct MovieClip for each step.
+
+tv/boombang/core/datatypes/notifications/_ac14381.as: Base data class for notifications, including ID, type, associated reward items, a template ID, and a reference to a notification configuration.
+
+tv/boombang/core/datatypes/notifications/_xs13329.as: Extends _ac14381 for specific notification types like delayed gifts or missions, adding social media sharing URLs (kv12836, qa11276, gs12774) and a level.
+
+tv/boombang/core/datatypes/notifications/_lt10565.as: Data class defining the configuration for a notification popup or message, including background, character, popup source ID, and image/localization based on level.
+
+tv/boombang/core/datatypes/notifications/_no13431.as: Data class representing an item associated with a notification, including its ID, text, and source path for an icon.
+
+tv/boombang/core/datatypes/notifications/_bw12046.as: Type-safe enumeration for different types of notifications (e.g., text, mission, delayed gift).
+
+tv/boombang/core/datatypes/levelup/_tq8281.as: Data class representing a level-up notification, including details about the new level, associated rewards, social sharing URLs, and visual assets.
+
+Rankings & Leaderboards
+
+tv/boombang/application/rankings/gui/windows/_ch13727.as: The main window for game rankings, initializing and managing the _uc512 ranking component.
+
+tv/boombang/application/rankings/gui/windows/_uc512.as: Displays game rankings, including tabs for weekly/global rankings, filters, pagination, and a list of ranked users, fetching data from the server.
+
+tv/boombang/application/rankings/gui/components/_dm1185.as: Manages the tab menu for ranking filters (weekly vs. global), handling tab selection and updating its visual state.
+
+tv/boombang/application/rankings/gui/components/_oi12333.as: Manages pagination for ranking lists, including previous/next buttons and a combo box for page selection, updating visibility based on total pages.
+
+tv/boombang/application/rankings/gui/components/_yb10999.as: Displays a single item in a ranking list, showing position, character, nickname, points, and an icon for level, with distinct styling for top ranks.
+
+tv/boombang/application/rankings/gui/components/_yw6385.as: Manages filters for ranking lists (friends vs. all), updating its visual state based on selection.
+
+tv/boombang/application/rankings/events/_oe14918.as: Custom event class for ranking UI interactions, such as tab selection, filter selection, search, and page changes.
+
+tv/boombang/application/screen/_ti12422.as: Displays game leaderboards (LED screen) for "This Week Winners" and "Last Week Winners", fetching data from the server and managing the display of ranking information.
+
+tv/boombang/application/screen/windows/_dr16127.as: A specialized window displaying game ranking information on an LED screen, including animations for winner display and transitions between ranking periods.
+
+tv/boombang/application/screen/windows/_ul3169.as: Base class for LED screen windows, handling common initialization like loading background assets and defining text formatting for display.
+
+tv/boombang/application/screen/components/_eb10022.as: Animates a Sprite across the screen in a specified direction for a given duration, dispatching an event upon completion.
+
+tv/boombang/application/screen/components/_mr7010.as: Renders a given DisplayObject as a grid of circles, optionally applying a grayscale filter.
+
+tv/boombang/application/screen/components/_py9597.as: Manages a sequence of Sprite objects, displaying them one after another with a timed delay, and dispatches an event when the sequence is complete.
+
+tv/boombang/application/communications/_op5014.as: Provides a static method to send a communication frame related to ranking requests, including various filters.
+
+tv/boombang/application/communications/_yu2106.as: Provides a static method to send a communication frame to request ranking data for a specific game.
+
+tv/boombang/core/datatypes/rankings/_gw6736.as: Data class representing a complete ranking structure, including various ranking metrics, a list of ranking periods, and the actual list of ranked users.
+
+tv/boombang/core/datatypes/rankings/_vt10806.as: Data class representing a single entry in a ranking list, containing a username, points, level, and character details.
+
+tv/boombang/core/datatypes/screen/_rd1956.as: Type-safe enumeration for different types of screen content or states.
+
+tv/boombang/core/datatypes/screen/_tr3910.as: Data class representing screen configurations, including a type and an array of objects with names, IDs, colors, and points.
+
+Single-Player Games
+
+tv/boombang/application/singlePlayerGames/_ij925.as: Manages a single-player game, loading game assets, character animations, and handling game events like "onGameOver" to display sharing options.
+
+core/datatypes/games/_wo7202.as: Data class representing a game, including its type, ID, waiting status, player count, and associated rewards.
+
+core/datatypes/games/_ga5143.as: Type-safe enumeration for different types of games (e.g., single player, multiplayer).
+
+core/datatypes/games/_ic9501.as: Type-safe enumeration for different types of game rewards.
+
+Tutorial System
+
+tv/boombang/application/tutorial/_do5953.as: A static controller for managing the tutorial system, providing methods to initiate specific tutorial states and destroy the tutorial UI.
+
+tv/boombang/application/tutorial/gui/_vk15050.as: The main tutorial window, displaying various tutorial steps (e.g., open backpack, drag object) using a tooltip component and sending completion events.
+
+tv/boombang/application/tutorial/gui/component/_uu6938.as: A tooltip component for tutorials, displaying a title and an arrow, with configurable position and text.
+
+Delayed Gift Feature
+
+tv/boombang/application/delayed_gift/controller/_al12382.as: Manages the delayed gift feature, displaying a gift box UI component (_fv6093) and updating its state based on a server-provided timer. It handles opening the gift and refreshing the timer.
+
+tv/boombang/application/delayed_gift/view/components/_fv6093.as: Displays a delayed gift box UI component, showing a timer for the next gift, a title, and an "open it" message when enabled, with tooltips for user interaction.
+
+Analytics (Google Analytics)
+
+tv/boombang/application/ga/_bc4777.as: Tracks the start and end times of various application responses (e.g., login, chat) for Google Analytics event logging, with optional filtering.
+
+tv/boombang/application/ga/_dv9978.as: A singleton class that tracks and logs the application's frame rate (FPS) to Google Analytics over a set interval.
+
+tv/boombang/application/ga/_ia12312.as: Tracks and logs navigation events within the "Lobby" section of the application to Google Analytics, categorizing them by sequence.
+
+tv/boombang/application/ga/_ny10913.as: Logs achievement-related events to Google Analytics, specifically tracking the completion order of achievements.
+
+tv/boombang/application/ga/_oh3064.as: Tracks the start and end times of asset loading operations for Google Analytics event logging.
+
+Miscellaneous Data Types & Communications
+
+tv/boombang/core/datatypes/movement/_eb11890.as: Type-safe enumeration for different types of movement actions.
+
+tv/boombang/core/datatypes/movement/_ww13428.as: Data class representing a movement action, including its type, ID, destination tile, orientation, timestamp, and a flag indicating if it's an instant movement.
+
+tv/boombang/core/datatypes/events/_sr3383.as: Data class representing an event, including its ID and current status (enable, disable, empty).
+
+tv/boombang/application/communications/_oe7570.as: Provides a static method to send a communication frame that requests initialization data.
+
+tv/boombang/application/communications/_xp11977.as: Provides static methods to send communication frames related to multiplayer game actions, specifically for paying to enter a game or withdrawing from one.
+
+Second SWF File
+Core Systems & Utilities
+
+Multiplayer & Communications
+
+multiuser/_jl5367.as: This class manages the multiplayer connection, including socket communication, data encryption/decryption, and dispatching events for various server messages. It handles connection lifecycle, Diffie-Hellman key exchange, and defines numerous command IDs.
+
+config/_cc7688.as: This class appears to be a central configuration file, holding static variables for application settings such as language XML files, server IP/port, ticket SSO, and various boolean flags for features. It also has an init method to set up these configurations based on loader info parameters and language settings.
+
+utils/boombang/_sy12112.as: This utility class parses server configuration data from an object, updating static variables in the _cc7688 config class.
+
+Cryptography
+
+crypto/Constants.as: Defines global constants, specifically for RSA cryptography, such as RSA_MODULUS and RSA_EXPONENT.
+
+crypto/CryptoTools.as: Provides utility functions for converting between ByteArray and String representations, including hexadecimal conversions, and implements the Fletcher-100 checksum algorithm.
+
+crypto/KeyExchange.as: Implements Diffie-Hellman-like key exchange functionality using BigInteger for operations involving private/public keys, primes, and generators to derive a shared secret.
+
+crypto/RSAKey.as: Implements RSA public and private key operations, including parsing keys, generating new keys, encryption, decryption, signing, and verification, supporting PKCS#1 padding.
+
+crypto/hurlant/math/BigInteger.as: Implements arbitrary-precision integer arithmetic, providing methods for basic operations (add, subtract, multiply, divide, mod), bitwise operations, radix conversions, modular exponentiation, GCD, and primality testing (Miller-Rabin).
+
+utils/crypto/_yb2400.as: This utility class provides cryptographic hashing functions, specifically MD5, for strings and ByteArrays.
+
+crypto/packetEvents.as: Manages the processing of crypto key packets received from the server, passing them to the multiuser system for decryption.
+
+crypto/keyPacket.as: Defines a custom event for crypto key packets, used to signal the arrival of a new encryption key.
+
+crypto/cryptoEventsCaller.as: Handles incoming crypto-related messages from the multiuser server, dispatching specific events for key initialization.
+
+Asset Loading System
+
+loaders/_sa9254.as: The central loading manager (singleton). It orchestrates the loading of _jb3113 (SWF/binary) and _xc10131 (XML/text) items, handles progress, errors, and decryption of loaded ByteArray data. It uses _mk16025 to get asset definitions.
+
+loaders/_mk16025.as: Manages a dictionary of _ki14341 objects, essentially a comprehensive list of all assets (SWFs, XMLs, etc.) that can be loaded in the application, categorizing them by name, path, file, type, and cacheability. It also has methods to update file sizes and hashes.
+
+loaders/_uk9465.as: Manages different types of loading screens (_ap6277, _rm11998, _eh1137, _ur15702) based on an integer _bl5830 and a _br8483 object for novelty texts. It acts as a facade to switch between various loader UIs.
+
+loaders/_jb3113.as: Represents an item to be loaded, holding its _ki14341 definition, a URLLoader or Loader instance, current loading state, and a reference to the loaded element.
+
+loaders/_xc10131.as: Represents an XML or text item to be loaded, holding its _ki14341 definition, a URLLoader instance (_gh9083), current loading state, and a reference to the loaded element.
+
+loaders/_ki14341.as: Defines a loadable asset, including its name, URL components (_en11768, _le1402), type, a boolean _pi16172 (likely for caching), size (_qk3096), and a hash/cachebuster string (_ef8064).
+
+loaders/_xe14606.as: An internal helper class used by _sa9254 to group _jb3113 and _xc10131 items for a specific loading batch. It provides methods to find items by URLLoader/Loader instance, calculate total and loaded bytes, and check if all items in its batch are complete.
+
+Logging & Error Handling
+
+org/osflash/thunderbolt/_mr16168.as: This is a logging utility class, providing methods for info, warn, error, and log messages. It can integrate with browser's console if ExternalInterface is available.
+
+_qn13596: This is a singleton class that acts as the logger manager.
+
+_fr7722: This is the base class for log entries.
+
+_co14706: Extends _fr7722. It logs "MovieClip Not Found" along with a function name (functionName) and a movie clip name (_sd1162).
+
+_ex15859: Extends _fr7722. It logs "Cantidad de datos recibida incorrecta" (Incorrect data quantity received) along with a function name (functionName) and a "TRAMA" (_gi7222).
+
+_sy12041: Extends _fr7722. It logs "Errores Varios" (Various Errors) along with a function name (functionName) and a description (_oi11598).
+
+General Utilities
+
+utils/_xv14798.as: This extensive utility class provides a wide range of helper functions for MovieClip manipulation, color transformations, array copying, date validation, and hit testing.
+
+utils/_yq8362.as: This utility class provides helper functions for TextField manipulation, including setting text, font, size, HTML text, and validating email formats.
+
+utils/_cr6121.as: This utility class handles text filtering and sanitization, including replacing special characters and filtering out "bad" words based on configured lists.
+
+utils/_ii147.as: This utility class provides functionality to validate input strings, checking against a list of forbidden words and patterns to ensure "stronger" input (e.g., for passwords).
+
+utils/_du9251.as: This utility class provides pathfinding logic for characters on a grid, calculating movement directions and paths while considering obstacles.
+
+utils/_kg12861.as: This utility class provides functions to convert a numerical time value (in seconds) into a _cy398 object or a formatted string representation (e.g., "1w 2d 3h").
+
+utils/_cy398.as: This class is a data structure for representing time intervals (seconds, minutes, hours, days, weeks).
+
+utils/_do3233.as: This utility class provides a rate-limiting mechanism, tracking cooldowns and usage counts for various actions identified by a string ID.
+
+utils/_jp4046.as: This utility class provides methods to interact with JavaScript in the browser environment, allowing calls to JavaScript functions and opening new popup windows.
+
+utils/_kg15251.as: This utility class provides methods for making HTTP requests (POST/GET) and handling responses. It also includes functionality for opening popup windows.
+
+utils/_ch8896.as: This utility class provides methods for capturing screenshots (BitmapData) of the game stage and encoding them into PNG or JPEG formats.
+
+utils/images/PNGEncoder.as: This class provides a static method to encode a BitmapData object into a PNG formatted ByteArray.
+
+utils/images/_fx12363.as: This class provides functionality to encode a BitmapData object into a JPEG formatted ByteArray, including Huffman coding and quantization tables.
+
+utils/_eq14922.as: This utility class manages sound playback, loading sounds from URLs and playing them, with a limit on simultaneous sounds.
+
+SoundEffects/_ku9742.as: A static manager for all sound effects in the application, allowing them to be added, removed, played, stopped, and globally muted/unmuted.
+
+SoundEffects/SoundEffect.as: A class representing a single sound effect, managing its playback, volume, panning, and repeat behavior.
+
+ticketManager/_xo5398.as: Manages a ticketing system to ensure that certain critical actions or events are only processed once at a time.
+
+Third-Party Libraries
+
+GreenSock Animation Platform (GSAP)
+
+src.com.greensock._di6891: This is the main tweening class. It extends _fr11461 and manages the animation of properties on a target object.
+
+src.com.greensock.core._fr11461: This is a base class for timeline-related objects (like tweens or timelines themselves).
+
+src.com.greensock.core._rr3428: This class extends _fr11461 and acts as a container or timeline for other _fr11461 instances (children).
+
+src.com.greensock.core._hp15107: This is a helper class representing an individual property being tweened.
+
+src.com.greensock.easing.Linear: This class provides basic linear easing functions (easeNone, easeIn, easeOut, easeInOut).
+
+src.com.greensock.easing.CustomEase: This class allows for the creation of custom easing functions based on an array of control points.
+
+Application & Scene Management
+
+Main Application
+
+BoomBangKids.as: The main application class, handling stage initialization, loading external data, setting up ExternalInterface callbacks for ranking windows and chat, and orchestrating other service/resource loading.
+
+Scene & Object Management
+
+BaseEscenario.as: Defines a base class for scenes or stages, handling sounds, text fields, and basic scene lifecycle.
+
+enterScene/_yc4848.as: The main controller for the "Enter Scene" module, managing the process of entering a new scene, including loading assets, creating persons, and handling server responses.
+
+enterScene/_pq10701.as: Handles communication with the multiuser server for "Enter Scene" related actions, sending and receiving messages about entering areas and private rooms.
+
+irAlli/_bi6199.as: This module handles "go to" requests, processing incoming navigation data and initiating scene transitions based on the received information.
+
+chooseScene/_tj14068.as: The main controller for the "Choose Scene" module, managing the overall scene, various panel components (tips, marketing viral, anti-timo, etc.), and orchestrating interactions.
+
+_mg605 (Scene Object Manager): A singleton responsible for managing interactive objects within a scene (_il6324). It handles adding, moving, modifying, and removing objects, processes user interactions (like dragging), and dispatches loading events.
+
+_dp11732 (Catalog): A singleton managing a catalog of all available game objects (_uq7753). It provides methods to retrieve objects by ID, filter them by category, and generate placeholder MovieClips.
+
+_gb14411 (Inventory/Mochila): A singleton managing the user's inventory or backpack. It stores and organizes owned objects (_gl6654), differentiates between instanced and stackable items, and supports filtering and sorting for display in a UI.
+
+Character (Person) Management
+
+person/_tl4091.as: This class manages a collection of _ta2443 (Person) objects, handling their creation, destruction, and updating within the game loop. It also manages temporary animations like character falls.
+
+person/_ta2443.as: This class represents a person (character) in the game. It handles animations, state changes (idle, walking, using items), visual effects (glow, name tag), and interactions with potions.
+
+person/_um8624.as: This class represents the data model for a character, storing properties like name, ID, position, orientation, colors, and various boolean flags related to character state and abilities.
+
+person/_ei4944.as: This singleton class manages character customization data loaded from XML files. It initializes by parsing customization rules and then applies them to character MovieClips based on character type and current state.
+
+person/pociones/_ga7956.as: This singleton class manages various character-related configurations, including character types, animation sequences, color data, and methods for retrieving specific character assets.
+
+Potion & Effects System
+
+estadoPociones/_py1516.as: This class processes incoming potion-related events, such as applying or removing potions from a person, and logs the actions.
+
+person/pociones/_td11801.as: This is the base class for all potion effects. It defines the lifecycle of a potion (init, activate, deactivate, destroy) and handles common visual elements and state management.
+
+person/_ql8928.as: This class manages active potion effects and animations on a character. It maintains a stack of effects and ensures the correct visual state is applied or removed based on potion activation/deactivation.
+
+person/_fl12537.as: This class manages a stack of _us2761 objects, likely representing active potions or effects on a character. It provides methods to add, remove, and retrieve items from this stack.
+
+person/_us2761.as: This class acts as a data structure to hold information about a specific potion or effect applied to a character, including its ID, target, arguments, and current state.
+
+(Numerous person/pociones/* files): Specific potion implementations extending the base potion class.
+
+UI & Interface Modules
+
+Login & Registration
+
+login/_pf11103.as: This is the main class for the login module, handling authentication, user session management, scene transitions, and overall login screen state.
+
+login/_kr10189.as: This class manages the login and password recovery interface, handling user input, button interactions, and navigation between different states.
+
+login/choosePerson/_iw11828.as: This class manages the character selection and registration interface, handling navigation between different character customization steps.
+
+login/choosePerson/Registro/_ol5641.as: This class manages the character registration form, handling user input, validation, and submission of registration data.
+
+login/choosePerson/colorear/_re8882.as: This is a base class for character color customization, handling the display of color options and applying selected colors to character parts.
+
+Main Interface (Chat & HUD)
+
+interfaz/_je14031.as: This is a central interface module managing various UI components, handling user interactions, and processing diverse events from the multiuser system.
+
+interfaz/baseChat/_na10583.as: This is the main class for the base chat interface, managing chat input, private messages, currency display, and integration with other UI modules.
+
+interfaz/baseChat/_ad4684.as: This class manages a list of recent chat messages and controls the rate at which messages can be sent to prevent spam.
+
+interfaz/baseChat/_rw2740.as: This class manages the display of chat "boobles" (speech bubbles) on the scene, including their positioning, animation, and content.
+
+clickBlock/_bb1400.as: Manages global UI overlays for blocking user interaction (e.g., when an area is full or waiting for a connection), displaying messages and "exit" options.
+
+chooseScene/panelInferior/_am5321.as: Manages the main "inferior panel" in the Choose Scene, displaying user stats (booms, diamonds, silver), navigation buttons (member, edit character, marketing viral, gashapon, news), and handling credit updates.
+
+Character Profile (Ficha Keko)
+
+interfaz/fichaKeko/_pf10232.as: This is a comprehensive class managing the main character ficha UI, handling navigation between different panels (emoticons, interactions, hobbies, votes, etc.), and integrating various sub-modules.
+
+interfaz/fichaKeko/paneles/_uj13298.as: This class manages the tab navigation system for the character ficha, displaying multiple tabs and switching between corresponding panels.
+
+interfaz/fichaKeko/paneles/_yy2794.as: This class manages the "emoticons" panel within the character ficha, displaying various emoticon options and handling their selection and dispatch.
+
+interfaz/fichaKeko/flecha/_ye3902.as: This class manages the "interactions" panel, displaying various interaction buttons (punch, coco, add friend, etc.) and handling their actions.
+
+interfaz/fichaKeko/hobbies/_vf12396.as: This class manages the "hobbies" panel within the character ficha, displaying editable hobby slots and handling their update and submission.
+
+interfaz/fichaKeko/votos/_ck7617.as: This class manages the "votes" panel within the character ficha, displaying remaining votes, handling voting actions, and updating vote counts for different attributes.
+
+interfaz/fichaKeko/paneles/_gm3835.as: This class manages the "reports" or "social actions" panel within the character ficha, displaying various buttons for actions like adding friends, ignoring, or reporting.
+
+interfaz/fichaKeko/paneles/_yc11491.as: This class manages the "complements" panel within the character ficha, displaying various accessory options and handling their selection and application.
+
+Inventory (Mochila)
+
+interfaz/mochila/_ec6426.as: This class manages the user's inventory (mochila) interface, displaying items, handling item interactions, and categorizing them.
+
+interfaz/mochila/_rm10993.as: This class manages the drag-and-drop functionality for items in the mochila, handling initial clicks and timing for drag operations.
+
+interfaz/mochila/_ug2640.as: This class manages the filter bar for item categories within the mochila interface.
+
+interfaz/mochila/buttons/_dg12631.as: This is a base class for mochila item buttons, handling common display logic, interaction states, and enabling/disabling based on context.
+
+Item Catalog
+
+interfaz/catalogo/_ag12173.as: This class manages the item catalog interface, displaying categories of items, item details, and handling purchase confirmations.
+
+Item Trading (Intercambios)
+
+interfaz/intercambios/_le9907.as: This class manages the entire item exchange interface, handling the display of items for both users, processing exchange actions, and updating the state of the exchange.
+
+intercambios/_ek5573.as: This class dispatches specific multiuser events (_bn7697._gl14183) related to item exchanges and sends various exchange actions to the multiuser system.
+
+BPad (Messaging/Friends)
+
+bpad/_id1792.as: The main controller for the BPad module, managing its visibility, state, and orchestrating interactions between the UI (_fu11263) and the backend communication (_gt2206).
+
+bpad/_fu11263.as: Manages the user interface and interactions for the BPad module, handling various views like home, messages, friends list, and contact management.
+
+bpad/_gt2206.as: Handles communication with the multiuser server for BPad-related actions, sending and receiving messages for contact management and messaging features.
+
+bpad/_jj14590.as: Manages the UI and logic for reporting users (messages, general user, or island), allowing users to submit reports.
+
+Private Scenes & Islands
+
+privados/_xq2402.as: The main controller for private scenes, managing objects, interactions, and communication with the multiuser system.
+
+privados/editObject/_se7088.as: The main manager for the object editing UI in private scenes, displaying different editing panels based on user selections.
+
+privados/creacion/_uw11952.as: Manages the UI and logic for creating a new private localization (scene), including choosing a base scene, naming it, and customizing its colors.
+
+chooseIsla/_qw14876.as: The main controller for the "Choose Island" module, coordinating various UI components (location ficha, create island ficha, friends/enemies ficha) and handling server communication.
+
+chooseIsla/_dv12508.as: Manages the UI and interactions for viewing and editing island locations, including adding/removing/locking locations and modifying island details.
+
+chooseIsla/_lk14481.as: Manages the UI and logic for creating a new island, guiding the user through steps like choosing an island type and naming it.
+
+News Module
+
+noticias/_ik14878.as: Manages the main news UI, displaying news lists or individual articles based on user interaction or incoming data. It also handles caching news data.
+
+noticias/_bf261.as: Manages a list of news articles, displaying navigation buttons and individual news items.
+
+Notifications Module
+
+notificaciones/_uv13537.as: The main manager for displaying and queuing notifications, deciding which notification to show based on scene context and priority.
+
+notificaciones/_nk10584.as: Manages a stack of active notification UI panels (_je4126), allowing for multiple notifications to be displayed.
+
+notificaciones/fichas/_je4126.as: An abstract base class for all notification ficha panels, defining common properties and methods. It also acts as a factory for creating specific ficha types.
+
+Multiplayer Games
+
+multiplayerGames/_qp15086.as: Acts as the main controller for different multiplayer games, instantiating the correct game logic class based on the scenario type and handling multiplayer messages.
+
+multiplayerGames/_hv11591.as: Provides core functionality for multiplayer game UI, including countdown timers, NPC visibility, and basic scene element control.
+
+multiplayerGames/games/shuriken/_wk12820.as: Implements the specific logic and UI for the Shuriken multiplayer game, extending _hv11591.
+
+multiplayerGames/games/ring/_ct8172.as: Implements the specific logic and UI for the Ring multiplayer game, extending _hv11591.
+
+multiplayerGames/games/lianas/_vu1787.as: Implements the specific logic and UI for the Lianas multiplayer game, extending _hv11591.
+
+multiplayerGames/games/cocos/_iv2502.as: Implements the specific logic and UI for the Cocos multiplayer game, extending _hv11591.
+
+Single-Player Games
+
+singleplayerGames/_ay2766.as: The main controller for single-player games, instantiating the correct game logic class and handling communication with the server.
+
+singleplayerGames/games/atunino/_wv9506.as: Implements the specific logic and UI for the Atunino single-player game, extending _cd5860.
+
+Miscellaneous Features
+
+baneos/_ho3263.as: Manages the display of various ban-related messages and popups (e.g., user banned, multiple connections, maintenance), including a "ficha" for aviso games.
+
+banners/_fh11348.as: Manages the loading and parsing of VAST (Video Ad Serving Template) XML for displaying ads, handling different ad types (video, image) and tracking events.
+
+concursos/_he13618.as: Manages the display and interaction of contest objects within a scene, handling their creation, removal, and server communication.
+
+creacionObjetos/fichas/_jo14869.as: The main manager for various "creation object" fichas (cards/popups), handling the flow between selecting formulas, preparing, getting help, and displaying results.
+
+creditos/_sd10289.as: Manages credit updates (gold, silver, diamonds) received from the server, animating the changes in the UI and handling timed bonuses.
+
+doors/_ps13798.as: Manages the display of various "door" related fichas (cards/popups), such as locked door warnings, key search hints, and successful entry messages.
+
+member/_vk13249.as: Manages a UI panel for membership-related actions, displaying different "fichas" (cards/forms) based on the user's membership status and interactions.
+
+plantas/_to14805.as: Manages the UI panels (fichas) for displaying information about plants and dragons in a private scene, including their growth status.
+
+utils/boombang/TakePhoto/TakePhoto.as: This is the main class for the "Take Photo" feature. It orchestrates various sub-panels (about, take, sending, end, error), handles the screenshot process, and uploads the image to a server.
+
+CommonLibrary.swf
+
+This SWF file appears to contain the base visual assets (MovieClips) and UI component skins that are instantiated and controlled by the ActionScript classes in the other SWF files.
+
+Windows & Cards
+
+AcceptedDataCard.as: A movie clip representing a card for displaying successfully accepted data.
+
+AcceptedDataCardMini.as: A smaller version of the AcceptedDataCard.
+
+AcceptedDataPayment.as: A movie clip displaying confirmation for successfully accepted payment data.
+
+ChangeMailLastStep.as: A window displayed as the final step in a mail change process.
+
+ChangeNickName.as: A window or form used to confirm or finalize a nickname change.
+
+DeleteAccountWindow.as: A confirmation window for deleting an account.
+
+EditConnectionsWindow.as: A window allowing users to manage and edit connection methods.
+
+ErrorDataCard.as: A movie clip representing a card for displaying errors after data submission.
+
+ErrorDataCardMini.as: A smaller version of the ErrorDataCard.
+
+ErrorDataPayment.as: A movie clip displaying error information related to payment data.
+
+FullArea.as: A full-screen overlay window.
+
+FullAreaWithExit.as: Similar to FullArea, but includes an "accept" button.
+
+GamesRegisterWindow.as: A window for game registration.
+
+GamesSingleRegisterWindow.as: A simplified game registration window.
+
+HousesWindow.as: A window for browsing and managing houses.
+
+IslandsWindow.as: A window for browsing and managing islands.
+
+ListWindow.as: A generic window for displaying lists of items.
+
+ManageSubscriptionsWindow.as: A window for users to manage their subscriptions.
+
+NavigationMenuWindow.as: A general window for displaying navigation menu options.
+
+PaymentsWindow.as: A primary window for handling payments.
+
+RankingWindow.as: A window for displaying rankings.
+
+SearchWindow.as: A window for performing searches.
+
+SendingDataCard.as: A movie clip indicating that data is currently being sent.
+
+SendingDataCardMini.as: A smaller version of the SendingDataCard.
+
+SendingPaymentData.as: A window indicating that payment data is currently being sent.
+
+ValidateCorrectWindow.as: A window displayed to indicate a correct validation.
+
+Forms & Input
+
+ActivateKeyForm.as: A form for users to activate a key.
+
+CardInputTextAsset.as: A movie clip encapsulating an input text field with visual feedback.
+
+ChangePasswordWindow.as: A form for changing a user's password.
+
+DeactivateKeyForm.as: A form for users to deactivate a key.
+
+KeyInputWindow.as: A window prompting for key input.
+
+KeyInputWindowMini.as: A smaller version of the KeyInputWindow.
+
+MailInputWindow.as: A form for email input.
+
+NickNameInputWindow.as: A window specifically designed for inputting or changing a nickname.
+
+ValidateEmailWindow.as: A form for email validation.
+
+UI Components & Buttons
+
+BoombangButton.as: A custom button component that can display tooltips and a process indicator.
+
+CloseCardButton.as: A reusable movie clip for a button to close cards or windows.
+
+CustomComboBox.as: A custom UI component wrapping the fl.controls.ComboBox.
+
+CustomRadioButton.as: A custom radio button UI component.
+
+FacebookButton.as: A custom button component styled for Facebook.
+
+NavigationButtonList.as: A movie clip containing a list of navigation buttons.
+
+NavigationButtonSubList.as: A movie clip representing a sub-list of navigation buttons.
+
+PaymentButton.as: A button component specifically for selecting payment methods.
+
+PaymentRadioButton.as: A radio button component designed for payment selections.
+
+SmallCloseButton.as: A reusable movie clip for a small close button.
+
+SocialMenu.as: A menu for social media sharing.
+
+SocialMenuSmall.as: A smaller version of the SocialMenu.
+
+TabButton.as: A button component used for navigating between tabs.
+
+TuentiButton.as: A custom button component styled for Tuenti.
+
+TwitterButton.as: A custom button component styled for Twitter.
+
+Payment-Specific UI
+
+PaymentCC.as: A window for processing credit card payments.
+
+PaymentCCPopUp.as: A pop-up window providing information related to credit card payments.
+
+PaymentNiceQuest.as: A payment window tailored for the "NiceQuest" payment method.
+
+PaymentPhone.as: A payment window for phone-based transactions.
+
+PaymentPPC.as: A payment window likely for pre-paid card transactions.
+
+ErrorInputDataPayment.as: A payment error window that requires key input.
+
+Tooltips & Status Indicators
+
+ToolTipAccountUnprotected.as: A tooltip movie clip providing information regarding an unprotected user account.
+
+ToolTipActivateSuperKey.as: A tooltip movie clip prompting the user to activate a "Super Key".
+
+ToolTipArrow.as: A movie clip representing an arrow used in tooltips.
+
+ToolTipText.as: A movie clip for displaying tooltip text.
+
+TutorialIslandToolTip.as: A tooltip movie clip for the tutorial island.
+
+CheckingStatus.as: A movie clip indicating a "checking" or "loading" status.
+
+OkStatus.as: A movie clip used to visually indicate a successful or "OK" status.
+
+WrongStatus.as: A movie clip used to visually indicate an incorrect or "Wrong" status.
+
+Process.as: A movie clip used to indicate an ongoing processing or loading state.
+
+Component Skins (fl.*)
+
+(Numerous CellRenderer_*.as, ComboBox_*.as, RadioButton_*.as, Scroll*.as, TextInput_*.as files): These are visual skins that define the appearance of standard Flash UI components (like lists, combo boxes, scroll bars) in their various states (up, over, down, disabled, selected).
+
+Flash UI Component Framework
+
+(fl.* packages): These files define the foundational UI components, event handling, data management, and focus management mechanisms of the Flash UI library.

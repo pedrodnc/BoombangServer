@@ -1,0 +1,84 @@
+# ============================================================================
+# Dependencias - BoomBang Ring Autoclicker
+# ============================================================================
+#
+# INSTALACIÓN:
+#   pip install -r requirements.txt
+#
+# VERSIONES:
+#   - Python 3.7+
+#   - Windows 7+ / macOS 10.13+ / Linux (Ubuntu 18.04+)
+#
+# ============================================================================
+
+# PyAutoGUI - Automatización de mouse y teclado
+# https://pyautogui.readthedocs.io/
+pyautogui>=0.9.53
+
+# pynput - Detección de hotkeys (funciona mejor en macOS que keyboard)
+# https://pynput.readthedocs.io/
+pynput>=1.7.6
+
+# ============================================================================
+# DEPENDENCIAS OPCIONALES (para desarrollo)
+# ============================================================================
+
+# Pillow - Requerido por PyAutoGUI (se instala automáticamente)
+Pillow>=9.0.0
+
+# ============================================================================
+# NOTAS DE COMPATIBILIDAD
+# ============================================================================
+#
+# WINDOWS:
+#   - Todas las dependencias funcionan sin configuración adicional
+#   - PyAutoGUI requiere permisos de accesibilidad en Windows 10+
+#
+# macOS:
+#   - Requiere permisos de accesibilidad en:
+#     System Preferences > Security & Privacy > Privacy > Accessibility
+#   - Añadir Terminal o Python a la lista de apps permitidas
+#   - NO requiere sudo (a diferencia del módulo 'keyboard')
+#
+# LINUX:
+#   - PyAutoGUI requiere xdotool: sudo apt install python3-xdotool
+#   - pynput funciona sin sudo (mejor que keyboard)
+#   - Scrot para screenshots: sudo apt install scrot
+#
+# ============================================================================
+# INSTALACIÓN POR SISTEMA OPERATIVO
+# ============================================================================
+#
+# WINDOWS:
+#   pip install -r requirements.txt
+#
+# macOS:
+#   pip3 install -r requirements.txt
+#   # NO requiere sudo
+#
+# LINUX (Ubuntu/Debian):
+#   sudo apt update
+#   sudo apt install python3-pip python3-tk python3-dev scrot
+#   pip3 install -r requirements.txt
+#
+# ============================================================================
+# TROUBLESHOOTING
+# ============================================================================
+#
+# ERROR: "ImportError: No module named 'tkinter'"
+# SOLUCIÓN:
+#   macOS:   brew install python-tk
+#   Ubuntu:  sudo apt install python3-tk
+#   Windows: Reinstalar Python con opción "tcl/tk and IDLE"
+#
+# ERROR: "Permission denied" en macOS
+# SOLUCIÓN:
+#   System Preferences > Security & Privacy > Privacy > Accessibility
+#   Añadir Terminal.app o Python
+#
+# ERROR: PyAutoGUI clicks no funcionan
+# SOLUCIÓN:
+#   Verificar permisos de accesibilidad (macOS)
+#   Ejecutar con privilegios de administrador (Linux)
+#
+# ============================================================================
