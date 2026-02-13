@@ -78,7 +78,7 @@ namespace Proyect_Base.app.Connection
             }
             return Convert.ToInt32(num);
         }
-        public new string ToString()
+        public override string ToString()
         {
             return "Packet Information: " + this.GetHandler() + " -> " + this.GetData();
         }
