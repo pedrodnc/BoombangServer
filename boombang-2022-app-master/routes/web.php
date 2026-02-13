@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Pages\GameController;
 use App\Http\Controllers\Pages\LoginController;
-use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 
 /*
