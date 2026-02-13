@@ -46,11 +46,33 @@ namespace Proyect_Base.app.socket
             {
                 try
                 {
-                    var buffer = new byte[255];
-                    int rec = client.Receive(buffer, 0, buffer.Length, 0);
-                    Array.Resize(ref buffer, rec);
+                    byte[] lengthBuffer = ReadExactly(client, 4);
+                    if (lengthBuffer == null)
+                    {
+                        client.Close();
+                        return;
+                    }
 
-                    WebMessage webMessage = new WebMessage(Encoding.UTF8.GetString(buffer));
+                    if (BitConverter.IsLittleEndian)
+                        Array.Reverse(lengthBuffer);
+
+                    int messageLength = BitConverter.ToInt32(lengthBuffer, 0);
+
+                    // Validate length (max 10MB)
+                    if (messageLength <= 0 || messageLength > 10 * 1024 * 1024)
+                    {
+                        client.Close();
+                        return;
+                    }
+
+                    byte[] messageBuffer = ReadExactly(client, messageLength);
+                    if (messageBuffer == null)
+                    {
+                        client.Close();
+                        return;
+                    }
+
+                    WebMessage webMessage = new WebMessage(Encoding.UTF8.GetString(messageBuffer));
                     Session Session = SessionCollection.getSessionByUID(webMessage.GetUID(), webMessage.GetIP());
                     if (Session != null)
                     {
@@ -61,8 +83,26 @@ namespace Proyect_Base.app.socket
                 catch (Exception ex)
                 {
                     Log.error(ex);
+                    try { client.Close(); } catch { }
                 }
             }
+            else
+            {
+                Thread.Sleep(100);
+            }
+        }
+
+        private static byte[] ReadExactly(Socket client, int length)
+        {
+            byte[] buffer = new byte[length];
+            int offset = 0;
+            while (offset < length)
+            {
+                int read = client.Receive(buffer, offset, length - offset, SocketFlags.None);
+                if (read == 0) return null; // Connection closed
+                offset += read;
+            }
+            return buffer;
         }
         public static void sendData(Socket client, string data)
         {

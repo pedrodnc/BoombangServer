@@ -62,7 +62,17 @@ const SocketIOController = {
   },
   sendDataCSharp(clientC, data) {
     console.log(data);
-    clientC.write(data);
+    // Convert string to Buffer
+    const messageBuffer = Buffer.from(data, 'utf8');
+
+    // Create 4-byte length prefix (Big Endian)
+    const lengthBuffer = Buffer.alloc(4);
+    lengthBuffer.writeUInt32BE(messageBuffer.length, 0);
+
+    // Combine and send
+    const packet = Buffer.concat([lengthBuffer, messageBuffer]);
+
+    clientC.write(packet);
   },
 };
 
