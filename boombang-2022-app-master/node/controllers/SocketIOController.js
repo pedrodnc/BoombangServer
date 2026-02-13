@@ -1,3 +1,5 @@
+const UserSessionManager = require('../utils/UserSessionManager');
+
 const SocketIOController = {
   init(io, clientC) {
     this.reciveDataSocketIO(io, clientC);
@@ -5,10 +7,18 @@ const SocketIOController = {
   reciveDataSocketIO(io, clientC) {
     const $this = this;
     io.on("connection", (socket) => {
+      socket.on("disconnect", () => {
+        UserSessionManager.removeSession(socket.id);
+      });
+
       socket.on("send-message", (data) => {
         if (!$this.validateData(data)) {
           console.log("Invalid data received, ignoring");
           return;
+        }
+
+        if (data.token_uid) {
+          UserSessionManager.addSession(data.token_uid, socket.id);
         }
 
         var clientIp = socket.request.headers['x-forwarded-for'] ||
