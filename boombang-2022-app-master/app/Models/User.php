@@ -118,7 +118,18 @@ class User extends Authenticatable
     public function extendSession(int $hours = 2): void
     {
         if ($this->isWebUser()) {
-            $this->session_expires_at = now()->addHours($hours);
+            $newExpiry = now()->addHours($hours);
+
+            // Optimization: Only update if the current expiry is significantly different
+            // from the new expiry (e.g., more than 30 minutes difference).
+            // This prevents writing to the database on every request.
+            if ($this->session_expires_at &&
+                $this->session_expires_at->greaterThan(now()) &&
+                $this->session_expires_at->diffInMinutes($newExpiry) < 30) {
+                return;
+            }
+
+            $this->session_expires_at = $newExpiry;
             $this->save();
         }
     }
