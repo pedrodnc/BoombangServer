@@ -28,6 +28,7 @@ namespace Proyect_Base.app.Threads
                     {
                         sendTresureChestGold(area);
                         sendTresureChestSilver(area);
+                        area.checkExpiredItems();
                     }
                 }
                 catch(Exception ex)

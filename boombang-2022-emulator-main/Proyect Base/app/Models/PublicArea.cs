@@ -27,7 +27,7 @@ namespace Proyect_Base.app.Models
         public int minUsersToSendItemTresureChestSilver { get; set; }
         public int timeToSendItemTresureChestSilver { get; set; }
         public int timeToSendNextItemTresureChestSilver { get; set; }
-        public Dictionary<int, ItemArea> items { get; set; }
+        public ConcurrentDictionary<int, ItemArea> items { get; set; }
         public List<AreaNpc> areaNpcs { get; set; }
         public PublicArea(DataRow row) : 
             base(row)
@@ -36,7 +36,7 @@ namespace Proyect_Base.app.Models
             this.active = int.Parse(row["active"].ToString());
             setTresureChestGold();
             setTresureChestSilver();
-            this.items = new Dictionary<int, ItemArea>();
+            this.items = new ConcurrentDictionary<int, ItemArea>();
             setAreaNpc();
         }
         //MODEL SETTERS
@@ -100,12 +100,10 @@ namespace Proyect_Base.app.Models
                 ItemArea newItemArea = Item.Clone();
                 newItemArea.setAreaPosition(getLocationForItem());
                 newItemArea.setKeyInArea(itemKey);
-                this.items.Add(itemKey, newItemArea);
+                this.items.TryAdd(itemKey, newItemArea);
 
                 resetTimeNextItem(newItemArea.modelo);
                 sendItem(newItemArea);
-
-                new Thread(() => removeItemByTime(newItemArea)).Start();
             }
         }
         private void resetTimeNextItem(int itemModel)
@@ -135,31 +133,41 @@ namespace Proyect_Base.app.Models
         {
             if (itemInArea(Item.keyInArea))
             {
-                this.items.Remove(Item.keyInArea);
+                this.items.TryRemove(Item.keyInArea, out ItemArea _);
                 removeItemHandler(Item.keyInArea);
                 return true;
             }
             return false;
         }
-        private void removeItemByTime(ItemArea Item)
+        public void checkExpiredItems()
         {
-            try
+            foreach (ItemArea item in this.items.Values)
             {
-                while (Item.tiempo_desaparicion > 0 && itemInArea(Item.keyInArea))
+                try
                 {
-                    Item.tiempo_desaparicion--;
-                    Thread.Sleep(new TimeSpan(0, 0, 1));
+                    if (item.tiempo_desaparicion > 0)
+                    {
+                        item.tiempo_desaparicion--;
+                    }
+
+                    if (item.tiempo_desaparicion == 0)
+                    {
+                        removeItemHandler(item.keyInArea);
+                        item.tiempo_desaparicion--;
+                    }
+                    else if (item.tiempo_desaparicion < 0)
+                    {
+                        item.tiempo_desaparicion--;
+                        if (item.tiempo_desaparicion <= -6)
+                        {
+                            this.items.TryRemove(item.keyInArea, out ItemArea _);
+                        }
+                    }
                 }
-                if (itemInArea(Item.keyInArea))
+                catch (Exception ex)
                 {
-                    removeItemHandler(Item.keyInArea);
-                    Thread.Sleep(new TimeSpan(0, 0, 0, 0, 5000));
-                    this.items.Remove(Item.keyInArea);
+                    Log.error(ex);
                 }
-            }
-            catch (Exception ex)
-            {
-                Log.error(ex);
             }
         }
         private bool itemInArea(int itemKey)
