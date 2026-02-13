@@ -2,7 +2,6 @@
 using Proyect_Base.app.Connection;
 using Proyect_Base.forms;
 using Proyect_Base.logs;
-using Proyect_Base.web_socket;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,7 +13,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Proyect_Base.app.socket
+namespace Proyect_Base.web_socket
 {
 	class WebSocketServer
 	{
