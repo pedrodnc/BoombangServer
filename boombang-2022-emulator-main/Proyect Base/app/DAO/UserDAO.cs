@@ -18,11 +18,25 @@ namespace Proyect_Base.app.DAO
         {
             SqlClient client = SqlManager.GetClient();
             client.SetParameter("name", name);
-            client.SetParameter("password", UserHelper.hashMake(password));
-            DataRow row = client.ExecuteQueryRow("SELECT * FROM users WHERE (name = @name AND password = @password) LIMIT 1");
+            DataRow row = client.ExecuteQueryRow("SELECT * FROM users WHERE name = @name LIMIT 1");
             if (row != null)
             {
-                return new User(row);
+                string storedHash = row["password"].ToString();
+                if (UserHelper.verifyPassword(password, storedHash))
+                {
+                    if (UserHelper.needsRehash(storedHash))
+                    {
+                        string newHash = UserHelper.hashMake(password);
+                        client.SetParameter("new_pass", newHash);
+                        client.SetParameter("uid", row["id"]);
+                        client.ExecuteNonQuery("UPDATE users SET password = @new_pass WHERE id = @uid");
+                    }
+                    return new User(row);
+                }
+            }
+            else
+            {
+                UserHelper.verifyPassword(password, "$2a$11$emabFT.KJLM7x4pqAyKQcuuuAnIqvUgCAXjd.qDszab7E07hJtUwW");
             }
             return null;
         }

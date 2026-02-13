@@ -8,6 +8,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using BCrypt.Net;
 
 namespace Proyect_Base.app.Helpers
 {
@@ -21,38 +22,31 @@ namespace Proyect_Base.app.Helpers
             }
             return false;
         }
+
         public static string hashMake(string Password)
         {
-            return Password;
-            //byte[] Encrypt = hash(Encoding.Default.GetBytes(Password));
-            //char[] Chars = Encoding.Default.GetChars(Encrypt);
-            //string newString = "";
-            //foreach (Char Char in Chars)
-            //{
-            //    int value = Convert.ToInt32(Char);
-            //    newString = newString += value.ToString();
-            //}
-            //return newString;
+            return BCrypt.HashPassword(Password);
         }
-        private static byte[] hash(byte[] Data)
+
+        public static bool verifyPassword(string Password, string Hash)
         {
-            int EncipherConstant = 12337;
-            int EncipherMorph = 0;
-            int Length = Data.Length;
-            int ActualByte;
-            int Morph;
-            byte[] Buffer = new byte[Length];
-            int Index = 0;
-            while (Length-- > 0)
+            try
             {
-                ActualByte = Data[Index];
-                Morph = (ActualByte ^ EncipherConstant) ^ EncipherMorph;
-                Buffer[Index] = (byte)Morph;
-                Index++;
-                EncipherConstant = ((EncipherConstant * EncipherConstant));
-                EncipherMorph = ActualByte;
+                if (Hash.StartsWith("$2"))
+                {
+                    return BCrypt.Verify(Password, Hash);
+                }
             }
-            return Buffer;
+            catch
+            {
+            }
+            return Password == Hash;
+        }
+
+        public static bool needsRehash(string Hash)
+        {
+            if (string.IsNullOrEmpty(Hash)) return false;
+            return !Hash.StartsWith("$2");
         }
         public static string makeSessionUID()
         {
