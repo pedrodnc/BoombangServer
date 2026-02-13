@@ -102,7 +102,11 @@ namespace Proyect_Base.forms
         }
         public void WriteLine(string text)
         {
-            CheckForIllegalCrossThreadCalls = false;
+            if (console.InvokeRequired)
+            {
+                console.Invoke(new Action<string>(WriteLine), text);
+                return;
+            }
 
             console.SelectionColor = Color.White;
 
@@ -114,7 +118,12 @@ namespace Proyect_Base.forms
 
         public void WriteLine(string text, string status)
         {
-            CheckForIllegalCrossThreadCalls = false;
+            if (console.InvokeRequired)
+            {
+                console.Invoke(new Action<string, string>(WriteLine), text, status);
+                return;
+            }
+
             switch (status)
             {
                 case "warning":
