@@ -89,7 +89,14 @@ namespace Proyect_Base.app.Connection
         {
             if (Data.Contains("<policy-file-request/>"))
             {
-                Client.Send(Encryption.Encoding.GetBytes("<?xml version=\"1.0\"?>\r\n<!DOCTYPE cross-domain-policy SYSTEM \"/xml/dtds/cross-domain-policy.dtd\">\r\n<cross-domain-policy>\r\n<allow-access-from domain=\"*\" to-ports=\"" + Config.FLASH_SOCKET_PORT + "\" />\r\n</cross-domain-policy>\0"));
+                StringBuilder policy = new StringBuilder();
+                policy.Append("<?xml version=\"1.0\"?>\r\n<!DOCTYPE cross-domain-policy SYSTEM \"/xml/dtds/cross-domain-policy.dtd\">\r\n<cross-domain-policy>\r\n");
+                foreach (string domain in Config.FLASH_TRUSTED_DOMAINS)
+                {
+                    policy.Append("<allow-access-from domain=\"" + domain.Trim() + "\" to-ports=\"" + Config.FLASH_SOCKET_PORT + "\" />\r\n");
+                }
+                policy.Append("</cross-domain-policy>\0");
+                Client.Send(Encryption.Encoding.GetBytes(policy.ToString()));
                 return true;
             }
             return false;
