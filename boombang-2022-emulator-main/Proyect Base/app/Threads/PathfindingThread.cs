@@ -28,7 +28,7 @@ namespace Proyect_Base.app.Threads
             {
                 try
                 {
-                    foreach (Session Session in SessionCollection.onlineUsers.Values.ToList())
+                    foreach (Session Session in SessionCollection.onlineUsers.Values)
                     {
                         if (UserMiddleware.userInArea(Session) && checkOldMoviments(Session))
                         {
@@ -53,7 +53,7 @@ namespace Proyect_Base.app.Threads
                 {
                     Log.error(ex);
                 }
-                Thread.Sleep(1);
+                Thread.Sleep(25);
             }
         }
         private static void checkUserOnItemArea(Session Session)
