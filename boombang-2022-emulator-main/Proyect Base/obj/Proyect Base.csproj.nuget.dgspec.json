@@ -1,38 +1,38 @@
 {
   "format": 1,
   "restore": {
-    "D:\\C#\\BoomBang-Server\\Proyect Base\\Proyect Base.csproj": {}
+    "/app/boombang-2022-emulator-main/Proyect Base/Proyect Base.csproj": {}
   },
   "projects": {
-    "D:\\C#\\BoomBang-Server\\Proyect Base\\Proyect Base.csproj": {
+    "/app/boombang-2022-emulator-main/Proyect Base/Proyect Base.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C#\\BoomBang-Server\\Proyect Base\\Proyect Base.csproj",
-        "projectName": "Proyect Base",
-        "projectPath": "D:\\C#\\BoomBang-Server\\Proyect Base\\Proyect Base.csproj",
-        "packagesPath": "C:\\Users\\Gen\\.nuget\\packages\\",
-        "outputPath": "D:\\C#\\BoomBang-Server\\Proyect Base\\obj\\",
+        "projectUniqueName": "/app/boombang-2022-emulator-main/Proyect Base/Proyect Base.csproj",
+        "projectName": "BoomBang Server",
+        "projectPath": "/app/boombang-2022-emulator-main/Proyect Base/Proyect Base.csproj",
+        "packagesPath": "/home/jules/.nuget/packages/",
+        "outputPath": "/app/boombang-2022-emulator-main/Proyect Base/obj/",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
+        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
-          "C:\\Users\\Gen\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/jules/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net472"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net472": {
             "projectReferences": {}
           }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -51,17 +51,6 @@
               "version": "[2.3.7, )"
             }
           }
-        }
-      },
-      "runtimes": {
-        "win": {
-          "#import": []
-        },
-        "win-x64": {
-          "#import": []
-        },
-        "win-x86": {
-          "#import": []
         }
       }
     }

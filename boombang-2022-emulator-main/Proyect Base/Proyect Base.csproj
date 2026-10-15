@@ -192,6 +192,9 @@
     <PackageReference Include="SqlKata.Execution">
       <Version>2.3.7</Version>
     </PackageReference>
+    <PackageReference Include="BCrypt.Net-Next">
+      <Version>4.0.3</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="database\backups\boombang %281%29.sql" />
