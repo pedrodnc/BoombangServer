@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Proyect_Base.app.socket
+namespace Proyect_Base.web_socket
 {
     class WebSocketController
     {
