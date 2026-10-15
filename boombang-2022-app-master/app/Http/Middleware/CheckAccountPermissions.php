@@ -34,6 +34,11 @@ class CheckAccountPermissions
             ], 401);
         }
 
+        // Extend session for web users on each request
+        if ($user->isWebUser()) {
+            $user->extendSession();
+        }
+
         // If no specific permission is required, just check session expiration
         if (!$permission) {
             return $next($request);
@@ -57,11 +62,6 @@ class CheckAccountPermissions
                 'upgrade_required' => true,
                 'download_url' => '/download-launcher'
             ], 403);
-        }
-
-        // Extend session for web users on each request
-        if ($user->isWebUser()) {
-            $user->extendSession();
         }
 
         return $next($request);
