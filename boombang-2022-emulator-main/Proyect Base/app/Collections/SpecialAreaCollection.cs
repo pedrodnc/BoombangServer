@@ -31,14 +31,14 @@ namespace Proyect_Base.app.Collections
         public static List<IslandArea> getIslandAreasByIslandId(int id)
         {
             List<IslandArea> islandAreas = new List<IslandArea>();
-            foreach(SpecialArea specialArea in specialAreas.Values.ToList())
+            foreach(SpecialArea specialArea in specialAreas.Values)
             {
-                if (specialArea is IslandArea)
+                if (specialArea is IslandArea islandArea && islandArea.islandId == id)
                 {
-                    islandAreas.Add((IslandArea)specialArea);
+                    islandAreas.Add(islandArea);
                 }
             }
-            return islandAreas.Where(i => i.islandId == id).ToList();
+            return islandAreas;
         }
         public static IslandArea getIslandAreaById(int id)
         {
