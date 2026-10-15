@@ -32,23 +32,19 @@ class HashUserPasswords extends Command
     {
         $this->info('Starting password migration...');
 
-        // Get all users
-        $users = User::all();
         $updated = 0;
 
-        foreach ($users as $user) {
-            // Check if password is already hashed (bcrypt hashes start with $2y$)
-            if (!str_starts_with($user->password, '$2y$')) {
-                $plainPassword = $user->password;
-
+        // Process users in chunks to avoid memory issues with large datasets
+        User::where('password', 'not like', '$2y$%')->chunkById(100, function ($users) use (&$updated) {
+            foreach ($users as $user) {
                 // Hash the password
-                $user->password = Hash::make($plainPassword);
+                $user->password = Hash::make($user->password);
                 $user->save();
 
                 $updated++;
                 $this->info("Updated password for user: {$user->name}");
             }
-        }
+        });
 
         $this->info("Password migration completed! Updated {$updated} users.");
 
