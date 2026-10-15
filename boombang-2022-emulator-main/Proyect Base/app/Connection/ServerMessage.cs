@@ -75,7 +75,7 @@ namespace Proyect_Base.app.Connection
             Message.Add(0xb0);
             return Message.ToArray();
         }
-        public new string ToString()
+        public override string ToString()
         {
             List<byte> Message = new List<byte>();
             Message.Add(0xb1);
