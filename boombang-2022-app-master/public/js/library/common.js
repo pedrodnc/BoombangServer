@@ -40,14 +40,7 @@ function addEvent(target, event, func)
 
 function addBookmark(url, title)
 {
-	if (navigator.userAgent.indexOf('MSIE') != -1)
-	{
-		window.external.AddFavorite(url, title);
-	}
-	else if (navigator.userAgent.indexOf('Firefox') != -1)
-	{
-		window.sidebar.addPanel(title, url, '');
-	}
+	alert("Press " + (navigator.userAgent.toLowerCase().indexOf('mac') != -1 ? 'Cmd' : 'Ctrl') + "+D to bookmark this page.");
 }
 
 function pararPeliculaJS()
