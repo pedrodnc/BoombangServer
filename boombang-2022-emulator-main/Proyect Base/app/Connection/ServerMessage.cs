@@ -40,7 +40,7 @@ namespace Proyect_Base.app.Connection
         {
             this.Parameters.Add(ParameterGroup);
         }
-        public byte[] GetContent()
+        private List<byte> ConstructMessage()
         {
             List<byte> Message = new List<byte>();
             Message.Add(0xb1);
@@ -56,9 +56,10 @@ namespace Proyect_Base.app.Connection
                 {
                     foreach (object Parameter in ParameterGroup)
                     {
-                        if (Parameter != null && Convert.ToString(Parameter) != "")
+                        string paramStr = Convert.ToString(Parameter);
+                        if (!string.IsNullOrEmpty(paramStr))
                         {
-                            foreach (byte ParameterByte in Encryption.Encoding.GetBytes(Parameter.ToString()))
+                            foreach (byte ParameterByte in Encryption.Encoding.GetBytes(paramStr))
                             {
                                 Message.Add(ParameterByte);
                             }
@@ -73,42 +74,15 @@ namespace Proyect_Base.app.Connection
                 Message.Add(0xb2);
             }
             Message.Add(0xb0);
-            return Message.ToArray();
+            return Message;
+        }
+        public byte[] GetContent()
+        {
+            return ConstructMessage().ToArray();
         }
         public new string ToString()
         {
-            List<byte> Message = new List<byte>();
-            Message.Add(0xb1);
-            foreach (byte ActualHeader in Header)
-            {
-                Message.Add(ActualHeader);
-                Message.Add(0xb3);
-            }
-            Message.Add(0xb2);
-            foreach (object[] ParameterGroup in Parameters)
-            {
-                if (ParameterGroup != null)
-                {
-                    foreach (object Parameter in ParameterGroup)
-                    {
-                        if (Parameter != null)
-                        {
-                            foreach (byte ParameterByte in Encryption.Encoding.GetBytes(Parameter.ToString()))
-                            {
-                                Message.Add(ParameterByte);
-                            }
-                        }
-                        Message.Add(0xb3);
-                    }
-                }
-                else
-                {
-                    Message.Add(0xb3);
-                }
-                Message.Add(0xb2);
-            }
-            Message.Add(0xb0);
-            return Encryption.Encoding.GetString(Message.ToArray());
+            return Encryption.Encoding.GetString(ConstructMessage().ToArray());
         }
     }
 }
