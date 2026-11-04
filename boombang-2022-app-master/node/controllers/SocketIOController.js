@@ -21,12 +21,28 @@ const SocketIOController = {
     if (!data || typeof data !== 'object') {
       return false;
     }
+
+    const allowedKeys = ['channel', 'token_uid', 'paramater'];
+    for (const key in data) {
+      if (!allowedKeys.includes(key)) {
+        delete data[key];
+      }
+    }
+
     if (!data.channel || typeof data.channel !== 'string') {
       return false;
     }
+    if (data.channel.includes('³') || data.channel.includes('²')) {
+      return false;
+    }
+
     if (!data.token_uid || typeof data.token_uid !== 'string') {
       return false;
     }
+    if (data.token_uid.includes('³') || data.token_uid.includes('²')) {
+      return false;
+    }
+
     if (data.paramater && typeof data.paramater === 'string') {
       if (data.paramater.length > 500) {
         return false;
@@ -36,13 +52,15 @@ const SocketIOController = {
     return true;
   },
   sanitizeString(str) {
-    return str.replace(/[<>\"\'&]/g, function(char) {
+    return str.replace(/[<>\"\'&³²]/g, function(char) {
       const entities = {
         '<': '&lt;',
         '>': '&gt;',
         '"': '&quot;',
         "'": '&#39;',
-        '&': '&amp;'
+        '&': '&amp;',
+        '³': '&sup3;',
+        '²': '&sup2;'
       };
       return entities[char];
     }).substring(0, 500);
