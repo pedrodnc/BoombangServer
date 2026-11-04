@@ -14,6 +14,7 @@ namespace Proyect_Base
 
         //FlashSocket config
         public static int FLASH_SOCKET_PORT = 2001;
+        public static string[] FLASH_TRUSTED_DOMAINS = (Environment.GetEnvironmentVariable("FLASH_TRUSTED_DOMAINS") ?? "localhost,127.0.0.1").Split(',');
 
         //API config
         public static string API_HOST = Environment.GetEnvironmentVariable("API_HOST") ?? "http://127.0.0.1:8000/webapi";
