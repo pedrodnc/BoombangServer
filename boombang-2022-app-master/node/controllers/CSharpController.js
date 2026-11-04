@@ -1,25 +1,31 @@
+const UserSessionManager = require('../utils/UserSessionManager');
+
 const CSharpController = {
   init(io, clientC) {
     this.reciveDataCSharp(io, clientC);
   },
   sendDataToSocketIO(io, key, uid, parameters) {
-    switch (key) {
-      case "user-login":
-        io.emit(key + "-" + parameters[1], parameters);
-        break;
-      case "user-entering-area":
-        io.emit(key + "-" + uid, parameters);
-        break;
-      case "user-leaving-area":
-        io.emit(key + "-" + uid, parameters);
-        break;
-      case "user-within-area":
-        io.emit(key + "-" + uid, parameters);
-        break;
-      case "user-in-flowepower":
-        io.emit(key + "-" + uid, parameters);
-        break;
-    }
+    const socketIds = UserSessionManager.getSocketIds(uid);
+
+    socketIds.forEach((socketId) => {
+      switch (key) {
+        case "user-login":
+          io.to(socketId).emit(key + "-" + parameters[1], parameters);
+          break;
+        case "user-entering-area":
+          io.to(socketId).emit(key + "-" + uid, parameters);
+          break;
+        case "user-leaving-area":
+          io.to(socketId).emit(key + "-" + uid, parameters);
+          break;
+        case "user-within-area":
+          io.to(socketId).emit(key + "-" + uid, parameters);
+          break;
+        case "user-in-flowepower":
+          io.to(socketId).emit(key + "-" + uid, parameters);
+          break;
+      }
+    });
   },
   reciveDataCSharp(io, clientC) {
     const $this = this;
