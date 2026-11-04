@@ -1,0 +1,1 @@
+## 2024-05-22 - [Node.js TCP Reconnection] **Learning:** `net.Socket` instances in Node.js are reusable for reconnections. However, using anonymous callbacks with `connect()` can lead to duplicate event listeners on subsequent attempts. **Action:** Attach `connect` listeners once using `.on('connect', ...)` and call `.connect()` without a callback during reconnection.
